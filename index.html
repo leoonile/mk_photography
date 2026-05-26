@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>MK Photography — Professional Benin Photographer | Weddings, Portraits & Events</title>
+<meta name="description" content="Award-winning Benin photographer specializing in weddings, portraits, and events. Book your session today. Est. 2021. Immortalizing the moments.">
+<meta name="keywords" content="Benin photographer, wedding photography Benin, portrait photographer Nigeria, event photographer Benin, MK Photography">
+
+<!-- SEO & Social Meta -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="MK Photography — Professional Photography in Benin">
+<meta property="og:description" content="Award-winning photographer capturing weddings, portraits, and lifestyle moments since 2021.">
+<meta property="og:image" content="/images/img-09.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9923a">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== EDITABLE CONFIG IS AT THE BOTTOM IN JAVASCRIPT ===== */
+
+:root{
+--bg:#f4f1e8;--fg:#2d2416;--accent:#c9923a;--muted:#5c5041;--border:rgba(45,36,22,.12);
+--paper:#eae5d6;--paper-dark:#ddd6c4;
+--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;
+--ease:cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"]{
+--bg:#0a0a0a;--fg:#fff;--border:rgba(255,255,255,.08);--muted:#999;
+--paper:#1a1a1a;--paper-dark:#0f0f0f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* =====================================================
+   IMAGE LOADING SYSTEM
+   - .mk-img-wrap  : the container that reserves space + shows shimmer
+   - .mk-img       : the actual <img>, fades in after load
+   - [data-loaded] : set by JS once image fires onload
+   - [data-error]  : set by JS if image fires onerror
+   ===================================================== */
+
+/* Shimmer keyframe */
+@keyframes mkShimmer {
+  0%   { background-position: -600px 0 }
+  100% { background-position:  600px 0 }
+}
+
+/* Wrapper: reserves the aspect ratio slot and shows the animated shimmer */
+.mk-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-dark, #ddd6c4);
+  /* Shimmer gradient */
+  background-image: linear-gradient(
+    90deg,
+    var(--paper-dark, #ddd6c4) 0px,
+    color-mix(in srgb, var(--paper-dark, #ddd6c4) 60%, #fff) 200px,
+    var(--paper-dark, #ddd6c4) 400px
+  );
+  background-size: 600px 100%;
+  animation: mkShimmer 1.4s ease-in-out infinite;
+  /* Prevent layout shift — width is 100%, height comes from padding-top
+     set inline by JS based on the image's known aspect ratio,
+     or falls back to the container's own height rules */
+  width: 100%;
+}
+[data-theme="dark"] .mk-img-wrap {
+  background: #1e1e1e;
+  background-image: linear-gradient(
+    90deg,
+    #1e1e1e 0px,
+    #2a2a2a 200px,
+    #1e1e1e 400px
+  );
+  background-size: 600px 100%;
+}
+
+/* Once loaded — stop shimmer animation immediately */
+.mk-img-wrap[data-loaded] {
+  animation: none;
+  background-image: none;
+  background: transparent;
+}
+
+/* The <img> itself: invisible until loaded, then fades in */
+.mk-img-wrap .mk-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+.mk-img-wrap[data-loaded] .mk-img {
+  opacity: 1;
+}
+
+/* Error fallback — replaces shimmer with a tasteful dark placeholder + icon */
+.mk-img-wrap[data-error] {
+  animation: none;
+  background-image: none;
+  background: var(--paper-dark, #ddd6c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+[data-theme="dark"] .mk-img-wrap[data-error] {
+  background: #1e1e1e;
+}
+.mk-img-wrap[data-error] .mk-img {
+  display: none; /* hide the broken img element */
+}
+.mk-img-wrap[data-error]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='1.2'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px 32px;
+  opacity: 0.35;
+}
+
+/* Preserve existing masonry, blog, hero aspect ratios via padding-top on the wrapper */
+/* These match the existing container height contracts in the original CSS */
+.masonry-item > .mk-img-wrap { padding-top: 125%; display: block; }
+button{font-family:inherit;cursor:pointer;border:none}
+::selection{background:var(--accent);color:#fff}
+
+/* Header */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(244,241,232,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:transform .3s}
+[data-theme="dark"] .header{background:rgba(10,10,10,.97)}
+.header.hide{transform:translateY(-100%)}
+.nav{max-width:1400px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;height:80px}
+.logo{cursor:pointer}
+.logo .mk-img-wrap{width:auto;height:50px;display:inline-flex;background:none;animation:none}
+.logo .mk-img{position:static;width:auto;height:100%;object-fit:contain;filter:brightness(0);transition:filter .3s,opacity .45s cubic-bezier(.4,0,.2,1)}
+[data-theme="dark"] .logo .mk-img{filter:brightness(0) invert(1)}
+.nav-menu{display:flex;align-items:center;gap:2.5rem}
+.nav-menu a{font-size:.875rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;position:relative}
+.nav-menu a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.nav-menu a:hover::after,.nav-menu a.active::after{width:100%}
+.nav-cta{background:var(--fg);color:var(--bg);padding:.75rem 1.75rem;font-size:.875rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transition:all .3s}
+.nav-cta:hover{background:var(--accent);transform:translateY(-2px)}
+.controls{display:flex;align-items:center;gap:1rem}
+.theme-toggle{width:40px;height:40px;border:1px solid var(--border);background:transparent;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.theme-toggle svg{width:18px;height:18px;stroke:var(--fg)}
+.burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;background:none}
+.burger span{width:24px;height:2px;background:var(--fg);transition:all .3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Hero - Split Screen */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#000}
+.hero-left{position:relative;display:flex;align-items:center;justify-content:center;padding:4rem;z-index:2;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(0,0,0,.7))}
+.hero-right{position:relative;overflow:hidden}
+.hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.8),transparent 50%);z-index:1}
+.hero-gallery{position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.hero-gallery-item{overflow:hidden;opacity:0;animation:heroReveal 1s ease forwards;position:relative}
+.hero-gallery-item:nth-child(1){animation-delay:.2s}
+.hero-gallery-item:nth-child(2){animation-delay:.4s}
+.hero-gallery-item:nth-child(3){animation-delay:.6s}
+.hero-gallery-item:nth-child(4){animation-delay:.8s}
+/* The mk-img-wrap inside the hero item fills its parent */
+.hero-gallery-item .mk-img-wrap{position:absolute;inset:0;padding-top:0;background:transparent;animation:none}
+.hero-gallery-item .mk-img{filter:grayscale(40%) brightness(.8);transition:transform 1s,filter 1s,opacity .45s cubic-bezier(.4,0,.2,1)}
+.hero-gallery-item:hover .mk-img{transform:scale(1.15);filter:grayscale(0) brightness(1)}
+.hero-content{max-width:600px}
+.hero-subtitle{font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;margin-bottom:2rem;color:var(--accent);font-weight:600;animation:slideIn 1s .3s both;position:relative;padding-left:4rem}
+.hero-subtitle::before{content:'';position:absolute;left:0;top:50%;width:3rem;height:2px;background:var(--accent);animation:lineGrow .8s .5s both}
+.hero-title{font-family:var(--serif);font-size:clamp(3.5rem,7vw,6.5rem);font-weight:400;line-height:.9;margin-bottom:2rem;color:#fff;animation:slideIn 1s .5s both;text-shadow:0 20px 60px rgba(0,0,0,.8);letter-spacing:-.03em}
+.hero-title span{display:block;font-size:.4em;font-weight:300;opacity:.7;margin-top:.5rem;letter-spacing:.05em}
+.hero-tagline{font-size:1.2rem;font-weight:300;margin-bottom:3rem;color:rgba(255,255,255,.8);line-height:1.6;animation:slideIn 1s .7s both}
+.hero-actions{display:flex;gap:1.5rem;animation:slideIn 1s .9s both}
+.hero-cta{background:#fff;color:#000;padding:1.2rem 2.8rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;position:relative;overflow:hidden;z-index:1;transition:all .4s}
+.hero-cta::before{content:'';position:absolute;inset:0;background:var(--accent);transform:translateY(100%);transition:transform .4s;z-index:-1}
+.hero-cta:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(201,146,58,.4);color:#fff}
+.hero-cta:hover::before{transform:translateY(0)}
+.hero-cta-secondary{background:transparent;color:#fff;padding:1.2rem 2.8rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;border:2px solid rgba(255,255,255,.3);transition:all .4s}
+.hero-cta-secondary:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-4px)}
+
+/* Sections */
+.section{padding:clamp(5rem,10vw,8rem) 0}
+.wrap{max-width:1400px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem)}
+.section-header{text-align:center;margin-bottom:4rem}
+.section-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;margin-bottom:1rem}
+.section-desc{font-size:1.1rem;color:var(--muted);max-width:650px;margin:0 auto;line-height:1.7}
+
+/* Portfolio Grid */
+.portfolio-filters{display:flex;gap:1rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
+.filter-btn{padding:.75rem 1.5rem;background:var(--paper);border:1px solid var(--border);border-radius:100px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:all .3s}
+.filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.masonry-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+/* masonry-item: no more padding-bottom hack — the .mk-img-wrap handles aspect ratio */
+.masonry-item{position:relative;overflow:hidden;border-radius:2px;cursor:pointer;transition:transform .5s,box-shadow .5s}
+.masonry-item .mk-img-wrap{padding-top:125%;border-radius:2px}
+/* The img inside the wrap gets hover effects via the wrap's parent */
+.masonry-item:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(45,36,22,.25)}
+.masonry-item:hover .mk-img{transform:scale(1.08);filter:grayscale(0)!important}
+.masonry-item .mk-img[data-loaded]{filter:grayscale(20%)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.portfolio-item{opacity:1;transform:scale(1);transition:opacity .5s,transform .5s}
+.portfolio-item.hide{opacity:0;transform:scale(.9);height:0;margin:0;padding:0;overflow:hidden}
+
+/* Testimonials */
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
+.testimonial-card{background:var(--paper);padding:2.5rem;border-radius:4px;border:1px solid var(--border)}
+.testimonial-stars{color:var(--accent);font-size:1.2rem;margin-bottom:1rem;letter-spacing:4px}
+.testimonial-text{font-family:var(--serif);font-size:1.15rem;line-height:1.7;margin-bottom:1.5rem;font-style:italic}
+.testimonial-author{font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.testimonial-meta{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:3rem}
+.pricing-card{background:var(--paper);padding:3rem 2rem;border-radius:4px;border:1px solid var(--border);text-align:center;transition:all .4s}
+.pricing-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(45,36,22,.15)}
+.pricing-card.featured{border-color:var(--accent);border-width:2px}
+.pricing-title{font-family:var(--serif);font-size:1.8rem;margin-bottom:1rem}
+.pricing-price{font-size:3rem;font-weight:600;color:var(--accent);margin-bottom:.5rem}
+.pricing-price small{font-size:.4em;color:var(--muted)}
+.pricing-desc{color:var(--muted);margin-bottom:2rem;font-size:.9rem}
+.pricing-features{list-style:none;margin-bottom:2rem;text-align:left}
+.pricing-features li{padding:.75rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.pricing-features li::before{content:'✓';color:var(--accent);margin-right:.75rem;font-weight:bold}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
+.service-card{background:var(--paper);padding:2.5rem;border-radius:4px;border:1px solid var(--border);transition:all .4s}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(45,36,22,.15);border-color:var(--accent)}
+.service-icon{width:60px;height:60px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
+.service-icon svg{width:30px;height:30px;fill:#fff}
+.service-title{font-family:var(--serif);font-size:1.8rem;margin-bottom:1rem}
+.service-desc{color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.service-features{list-style:none;margin-bottom:1.5rem}
+.service-features li{padding:.5rem 0;font-size:.9rem;display:flex;align-items:center;gap:.75rem}
+.service-features li::before{content:'✓';color:var(--accent);font-weight:bold;font-size:1.1rem}
+
+/* FAQ */
+.faq-container{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);margin-bottom:1rem}
+.faq-question{width:100%;padding:1.5rem 0;text-align:left;background:none;font-size:1.1rem;font-weight:600;color:var(--fg);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.faq-question:hover{color:var(--accent)}
+.faq-question::after{content:'+';font-size:1.5rem;transition:transform .3s}
+.faq-question.active::after{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s,padding .4s;padding:0}
+.faq-answer.active{max-height:500px;padding:0 0 1.5rem 0}
+.faq-answer p{color:var(--muted);line-height:1.7}
+
+/* Contact Form */
+.contact-form{max-width:600px;margin:3rem auto 0}
+.form-group{margin-bottom:1.5rem}
+.form-group label{display:block;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;color:var(--muted)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:1rem;border:1px solid var(--border);background:var(--paper);color:var(--fg);font-family:var(--sans);font-size:.95rem;border-radius:4px;transition:border-color .3s,box-shadow .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(201,146,58,.1)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.form-submit{background:var(--accent);color:#fff;padding:1.1rem 2.5rem;font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;width:100%;cursor:pointer;transition:all .3s}
+.form-submit:hover{background:var(--fg);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.form-success{padding:1rem;border-radius:4px;margin-top:1rem;display:none;background:rgba(40,167,69,.1);border:1px solid rgba(40,167,69,.3);color:#28a745}
+
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem;margin-top:3rem}
+.blog-card{background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--border);transition:all .4s;cursor:pointer}
+.blog-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(45,36,22,.15)}
+.blog-card-image{aspect-ratio:16/10;overflow:hidden;background:var(--border)}
+.blog-card-image .mk-img-wrap{height:260px;padding-top:0}
+.blog-card-image .mk-img{transition:transform .6s, opacity .45s cubic-bezier(.4,0,.2,1)}
+.blog-card:hover .blog-card-image .mk-img{transform:scale(1.08)}
+.blog-card-content{padding:1.5rem}
+.blog-card-meta{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}
+.blog-card-title{font-family:var(--serif);font-size:1.5rem;font-weight:500;margin-bottom:.75rem;line-height:1.3}
+.blog-card-excerpt{color:var(--muted);font-size:.9rem;line-height:1.6}
+
+/* Gallery Lock */
+.gallery-lock{max-width:400px;margin:4rem auto;text-align:center;padding:3rem;background:var(--paper);border-radius:4px;border:1px solid var(--border)}
+.gallery-lock h3{font-family:var(--serif);font-size:2rem;margin:1.5rem 0 1rem}
+.gallery-lock input{width:100%;padding:1rem;border:1px solid var(--border);background:var(--bg);color:var(--fg);font-size:1rem;border-radius:4px;margin-bottom:1rem}
+.gallery-lock button{width:100%;padding:1rem;background:var(--accent);color:#fff;font-weight:600;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;border-radius:4px}
+.gallery-content{display:none}
+.gallery-content.unlocked{display:block}
+
+/* Floating Buttons */
+.whatsapp-float{position:fixed;bottom:30px;right:30px;z-index:999;width:60px;height:60px;background:#128C7E;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(18,140,126,.4);transition:all .3s;animation:pulse 2s ease-in-out infinite}
+.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(18,140,126,.6)}
+.whatsapp-float svg{width:32px;height:32px;fill:#fff}
+
+
+
+
+
+
+
+
+.action-buttons{position:fixed;bottom:100px;right:30px;z-index:998;display:flex;flex-direction:column;gap:12px}
+.action-btn{width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.action-btn.phone{background:#2d2416}
+.action-btn.email{background:#2d2416}
+.action-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,.25)}
+.action-btn svg{width:26px;height:26px;fill:#fff}
+
+/* Animations */
+@keyframes heroReveal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes lineGrow{from{width:0}to{width:3rem}}
+@keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(18,140,126,.4)}50%{box-shadow:0 4px 30px rgba(18,140,126,.7)}}
+
+/* Pages */
+.page{display:none}
+.page.active{display:block}
+
+/* Footer */
+.footer{background:var(--fg);color:var(--bg);padding:4rem 0 2rem}
+[data-theme="dark"] .footer{background:var(--bg);border-top:1px solid var(--border);color:var(--fg)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:2rem}
+.footer-brand .mk-img-wrap{width:auto;height:60px;display:inline-flex;background:none;animation:none;margin-bottom:1rem}
+.footer-brand .mk-img{position:static;width:auto;height:100%;object-fit:contain;filter:brightness(0) invert(1);transition:opacity .45s cubic-bezier(.4,0,.2,1)}
+[data-theme="dark"] .footer-brand .mk-img{filter:brightness(1) invert(0)}
+.footer-brand-desc{opacity:.7;line-height:1.7;font-size:.95rem}
+.footer-col h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;font-weight:600;opacity:.5}
+.footer-col a{display:block;padding:.4rem 0;opacity:.7;transition:opacity .2s;font-size:.9rem}
+.footer-col a:hover{opacity:1}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;opacity:.5}
+
+/* Mobile */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;min-height:100vh}
+  .hero-left{padding:6rem 2rem 4rem}
+  .hero-right{position:absolute;inset:0;z-index:0;opacity:.3}
+  .hero-right::before{background:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.7))}
+  .hero-actions{flex-direction:column;width:100%}
+  .hero-cta,.hero-cta-secondary{width:100%;text-align:center}
+  
+}
+@media(max-width:768px){
+  .nav-menu{position:fixed;inset:80px 0 auto;background:rgba(244,241,232,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;transform:translateY(-150%);transition:transform .4s;align-items:stretch;border-bottom:1px solid var(--border)}
+  [data-theme="dark"] .nav-menu{background:rgba(10,10,10,.98)}
+  .nav-menu.open{transform:translateY(0)}
+  .nav-menu a{text-align:center;padding:1rem 0;border-bottom:1px solid var(--border)}
+  .nav-cta{margin-top:1rem;text-align:center}
+  .burger{display:flex}
+  .masonry-grid,.portfolio-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .action-buttons{right:15px;bottom:90px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+
+</head>
+<body>
+
+<!-- ========== EDITABLE CONFIG - CHANGE ALL CONTENT HERE ========== -->
+<script id="site-config">
+const CONFIG = {
+  hero: {
+    subtitle: "Immortalizing the moments",
+    title: "MK Photography",
+    tagline: "Award-winning Benin photographer specializing in weddings, portraits, and lifestyle moments that tell authentic stories.",
+    mainButton: "Book Your Session",
+    secondaryButton: "View Portfolio"
+  },
+  
+  contact: {
+    email: "mkphotography370@gmail.com",
+    phone: "+234 903 525 2179",
+    whatsapp: "+2349035252179",
+    instagram: "@mk.4tography",
+    tiktok: "@mk.4tography"
+  },
+  
+  testimonials: [
+    {stars: 5, text: "MK's work exceeded our expectations. He captured our day in a way no one else could have. His photos are absolutely impeccable.", author: "Amara & Tunde", meta: "Wedding — December 2024"},
+    {stars: 5, text: "Professional, creative, and delivered ahead of schedule. The outdoor session was incredible!", author: "Chioma O.", meta: "Portrait Session — October 2024"},
+    {stars: 5, text: "Best photographer in Benin, hands down. Worth every naira.", author: "David A.", meta: "Corporate Event — September 2024"},
+    {stars: 5, text: "I booked MK for my traditional wedding and I have zero regrets. Every single shot told a story. My family still talks about the photos.", author: "Blessing & Emeka", meta: "Traditional Wedding — March 2025"},
+    {stars: 5, text: "He photographed our football tournament and the action shots were insane. Captured moments even we didn't see live. Truly talented.", author: "Coach Festus O.", meta: "Sports Event — July 2025"},
+    {stars: 5, text: "Needed urgent headshots for a job application and MK delivered same day. Clean, sharp, and very professional. Highly recommended.", author: "Precious A.", meta: "Corporate Headshots — November 2025"},
+    {stars: 5, text: "Booked for my graduation portrait and the result was beyond what I imagined. The lighting, the editing — everything was perfect.", author: "Favour E.", meta: "Graduation Portrait — February 2026"},
+    {stars: 5, text: "MK covered our brand activation event at UNIBEN. The energy he brought matched the energy in the room. Every photo was usable.", author: "Roqqu Marketing Team", meta: "Brand Activation — April 2026"}
+  ],
+  
+  pricing: [
+    {name: "Essential", price: "₦150,000", period: "session", description: "Perfect for portraits and lifestyle shoots", features: ["2-hour session", "50+ edited photos", "Online gallery", "Personal usage rights", "1 week delivery"], featured: false},
+    {name: "Premium", price: "₦350,000", period: "event", description: "Ideal for weddings and corporate events", features: ["Full-day coverage (8 hours)", "300+ edited photos", "Online gallery + USB", "Commercial usage rights", "2 week delivery", "Second photographer"], featured: true},
+    {name: "Ultimate", price: "₦600,000", period: "event", description: "Complete wedding or multi-day coverage", features: ["Unlimited coverage", "500+ edited photos", "Premium album + USB", "Full commercial rights", "1 week delivery", "2 photographers + videographer", "Drone footage"], featured: false}
+  ],
+  
+  services: [
+    {icon: 'wedding', title: 'Wedding Photography', description: 'Complete wedding day coverage from getting ready to the last dance', features: ['Pre-wedding consultation', 'Engagement session included', 'Full day coverage (10+ hours)', '500+ edited photos', 'Online gallery with download', 'Second photographer', 'Same-day sneak peeks']},
+    {icon: 'portrait', title: 'Portrait Sessions', description: 'Professional portraits for personal branding, family, and lifestyle', features: ['Studio or outdoor location', '1-2 hour session', 'Wardrobe consultation', '50+ edited photos', 'Hair & makeup artist available', 'Same-week delivery', 'Print packages available']},
+    {icon: 'corporate', title: 'Corporate & Events', description: 'Professional coverage for conferences, product launches, and corporate events', features: ['On-site coverage', 'Candid and posed shots', '200+ edited photos', 'Same-day highlights', 'Commercial usage rights', 'Fast 48-hour turnaround', 'Custom branding available']}
+  ],
+  
+  faq: [
+    {question: "How many photos will I receive?", answer: "For wedding packages, you'll receive 300-500+ fully edited high-resolution images. Portrait sessions include 50-100+ images. All photos are hand-edited and delivered via online gallery with download and sharing options."},
+    {question: "What is your turnaround time?", answer: "Wedding galleries are delivered within 2-3 weeks. Portrait and commercial sessions are typically ready within 7-10 days. Rush delivery is available for an additional fee if you have a specific deadline."},
+    {question: "Do you travel for shoots?", answer: "Yes! We cover all of Benin and surrounding areas at no extra cost. For destinations outside Benin, we charge for travel expenses (accommodation and transportation). We've shot weddings across Nigeria and internationally."},
+    {question: "What happens if you're sick on my wedding day?", answer: "We have a network of professional backup photographers. In the unlikely event of illness or emergency, a qualified replacement photographer will cover your event at no additional cost."},
+    {question: "Can we get the raw/unedited photos?", answer: "Our editing is part of our artistic signature, so we deliver fully edited images. However, if you need raw files for a specific reason (magazine publication, etc.), we can provide them for an additional fee."},
+    {question: "Do you provide prints and albums?", answer: "Yes! We offer premium photo albums, canvas prints, and framed prints. These are available as add-ons to any package."}
+  ],
+  
+  blog: [
+    {image: '/images/wedding-detail-01.jpg',    category: 'Weddings',  date: 'December 15, 2024',  title: "Amara & Tunde's Elegant Benin Wedding",    excerpt: 'A beautiful celebration of love captured in every detail — from the hand-beaded bridal gown to the crystal-encrusted heels.'},
+    {image: '/images/portrait-studio-08.jpg',   category: 'Portraits', date: 'November 28, 2024',  title: 'Corporate Headshots for Tech Startup',      excerpt: 'Professional headshots for a growing Benin tech company, captured in our studio with clean, modern styling.'},
+    {image: '/images/event-graduation-01.jpg',  category: 'Events',    date: 'November 10, 2024',  title: 'University of Benin Graduation Portraits',  excerpt: 'Commemorating one of life\'s biggest milestones with warm, vibrant portraits that families will treasure forever.'}
+  ],
+
+  portfolio: [
+    // Studio portraits — 9 unique shots
+    {src: '/images/portrait-studio-01.jpg', category: 'studio',   alt: 'Studio portrait — woman in black lace dress with blonde box braids'},
+    {src: '/images/portrait-studio-02.jpg', category: 'studio',   alt: 'Studio portrait — woman in black strapless gown with red locs'},
+    {src: '/images/portrait-studio-03.jpg', category: 'studio',   alt: 'Studio portrait — woman in white crop top and wide-leg jeans'},
+    {src: '/images/portrait-studio-04.jpg', category: 'studio',   alt: 'Studio portrait — woman in NYSC uniform holding cap'},
+    {src: '/images/portrait-studio-05.jpg', category: 'studio',   alt: 'Studio portrait — woman in NYSC shirt with glasses'},
+    {src: '/images/portrait-studio-06.jpg', category: 'studio',   alt: 'Studio portrait — man in white tee and camo shorts, seated on wooden block'},
+    {src: '/images/portrait-studio-07.jpg', category: 'studio',   alt: 'Studio portrait — man in full black suit seated in gold chair'},
+    {src: '/images/portrait-studio-08.jpg', category: 'studio',   alt: 'Corporate headshot — woman in black polka-dot blouse'},
+    {src: '/images/portrait-studio-09.jpg', category: 'studio',   alt: 'Studio portrait — full body, woman in black bodysuit and wide-leg jeans'},
+    // Outdoor portraits — 2 unique shots
+    {src: '/images/portrait-outdoor-01.jpg', category: 'outdoor', alt: 'Outdoor portrait — woman leaning on post against graffiti wall'},
+    {src: '/images/portrait-outdoor-02.jpg', category: 'outdoor', alt: 'Outdoor portrait — woman in white shirt at golden hour'},
+    // Events — 3 unique shots
+    {src: '/images/event-ceremony-01.jpg',   category: 'events',  alt: 'Traditional ceremony — men in cultural attire seated at event'},
+    {src: '/images/event-stadium-01.jpg',    category: 'events',  alt: 'Sports event — packed stadium crowd watching the match'},
+    {src: '/images/event-graduation-01.jpg', category: 'events',  alt: 'Graduation portrait — University of Benin convocation'},
+    // Sports — 5 unique shots
+    {src: '/images/sports-football-01.jpg',  category: 'sports',  alt: 'Edolite Cup — goalkeeper clash mid-air'},
+    {src: '/images/sports-football-02.jpg',  category: 'sports',  alt: 'Edolite Cup — header duel between two players'},
+    {src: '/images/sports-football-03.jpg',  category: 'sports',  alt: 'Edolite Cup — spectacular bicycle kick'},
+    {src: '/images/sports-football-04.jpg',  category: 'sports',  alt: 'Edolite Cup — aerial challenge, goalmouth scramble'},
+    {src: '/images/sports-football-05.jpg',  category: 'sports',  alt: 'Football team celebrating together on the pitch'},
+    // Weddings — detail + 3 traditional
+    {src: '/images/wedding-detail-01.jpg',   category: 'weddings', alt: 'Wedding detail — crystal-encrusted bridal heels against red beaded dress'},
+    {src: '/images/wedding-trad-01.jpg',     category: 'weddings', alt: 'Traditional wedding — bride in Yoruba aso-oke and blue gele'},
+    {src: '/images/wedding-trad-02.jpg',     category: 'weddings', alt: 'Traditional wedding — bride in Edo red coral attire'},
+    {src: '/images/wedding-trad-03.jpg',     category: 'weddings', alt: 'Traditional wedding — bride in Edo black velvet and coral beads'},
+    // Studio portraits — batch 2
+    {src: '/images/portrait-studio-10.jpg',  category: 'studio',   alt: 'Studio portrait — man in white tank top and khaki trousers'},
+    {src: '/images/portrait-studio-11.jpg',  category: 'studio',   alt: 'Studio portrait — woman in navy blazer, serious expression'},
+    {src: '/images/portrait-studio-12.jpg',  category: 'studio',   alt: 'Studio portrait — woman in navy blazer, smiling'},
+    {src: '/images/portrait-studio-13.jpg',  category: 'studio',   alt: 'Studio portrait — man in black tee and MK Photography cap'},
+    // Outdoor portraits — batch 2
+    {src: '/images/portrait-outdoor-03.jpg', category: 'outdoor',  alt: 'Night portrait — man in streetwear jersey, neon bokeh lights'},
+    // Events — batch 2
+    {src: '/images/event-performance-01.jpg',category: 'events',   alt: 'Stage performance — man in grey suit, passionate expression'},
+    {src: '/images/event-gala-01.jpg',       category: 'events',   alt: 'Award night gala — two women in elegant gowns'},
+    {src: '/images/event-award-01.jpg',      category: 'events',   alt: 'Awards ceremony — woman with Award of Excellence trophy'},
+    // Sports — batch 2 + 3 (previously mislabelled outdoor files corrected here)
+    {src: '/images/sports-football-06.jpg',  category: 'sports',   alt: 'Football — Living Voice Academy team goal celebration dance'},
+    {src: '/images/sports-football-07.jpg',  category: 'sports',   alt: 'Football — Edo State FA match, sportsmanship moment'},
+    {src: '/images/sports-football-08.jpg',  category: 'sports',   alt: 'Football — fierce header duel, red vs blue kits'},
+    {src: '/images/sports-football-09.jpg',  category: 'sports',   alt: 'Football — Living Voice Academy team, goal celebration'},
+    {src: '/images/sports-football-10.jpg',  category: 'sports',   alt: 'Football — powerful kick, blue vs lime green kits'},
+    {src: '/images/sports-football-11.jpg',  category: 'sports',   alt: 'Football — sportsmanship, player helped up by teammate'},
+    // Weddings — batch 3 (traditional ceremony coverage)
+    {src: '/images/wedding-trad-04.jpg',     category: 'weddings', alt: 'Traditional wedding — bride in yellow gold aso-oke and matching gele'},
+    {src: '/images/wedding-couple-01.jpg',   category: 'weddings', alt: 'Traditional wedding — couple portrait, teal gele bride and groom in coral cap'},
+    {src: '/images/wedding-trad-05.jpg',     category: 'weddings', alt: 'Traditional wedding — three men in mixed tribal attires'},
+    {src: '/images/wedding-group-01.jpg',    category: 'weddings', alt: 'Traditional wedding — large family group in colourful attires'},
+    {src: '/images/wedding-group-02.jpg',    category: 'weddings', alt: 'Traditional wedding — bridal party in Edo red coral attire'},
+    {src: '/images/wedding-group-03.jpg',    category: 'weddings', alt: 'Traditional wedding — full wedding party wide group shot'},
+    {src: '/images/wedding-candid-01.jpg',   category: 'weddings', alt: 'Traditional wedding — candid crowd moment, woman in red plaid wrapper'},
+    // Studio — commercial shoot (Horns & Halos brand)
+    {src: '/images/commercial-studio-01.jpg',category: 'studio',   alt: 'Commercial shoot — Horns & Halos red tee, back view'},
+    {src: '/images/commercial-studio-02.jpg',category: 'studio',   alt: 'Commercial shoot — Horns & Halos, two women in red and white tees'},
+    {src: '/images/commercial-studio-03.jpg',category: 'studio',   alt: 'Commercial shoot — Horns & Halos red tee, young man front-facing'},
+    {src: '/images/commercial-studio-04.jpg',category: 'studio',   alt: 'Commercial shoot — Horns & Halos orange tee, woman playful pose'},
+    {src: '/images/commercial-studio-05.jpg',category: 'studio',   alt: 'Commercial shoot — Horns & Halos white tees, man and woman back to front'},
+    // Events — batch 3
+    {src: '/images/event-detail-01.jpg',     category: 'events',   alt: 'Event detail — couple holding hands at prayer gathering'},
+    {src: '/images/event-worship-01.jpg',    category: 'events',   alt: 'Worship event — woman singing into mic, congregation worshipping'},
+    {src: '/images/event-detail-02.jpg',     category: 'events',   alt: 'Event detail — close-up of hands playing keyboard at worship service'},
+    {src: '/images/event-corporate-01.jpg',  category: 'events',   alt: 'Corporate event — Roqqu brand activation, UNIBEN campus'},
+    {src: '/images/event-worship-02.jpg',    category: 'events',   alt: 'Church event — speaker at microphone, passionate delivery'}
+  ],
+  
+  galleryPassword: 'MK2024',
+  shareText: 'Check out MK Photography - Professional photography services in Benin!'
+};
+</script>
+
+<header class="header">
+  <nav class="nav">
+    <div class="logo" data-page="home">
+      <div class="mk-img-wrap"><img class="mk-img" src="/images/img-09.png" alt="MK Photography" decoding="async" loading="eager" fetchpriority="high" onload="this.parentNode.setAttribute('data-loaded','')" onerror="this.parentNode.setAttribute('data-error','')"></div>
+    </div>
+    <div class="controls">
+      <button class="theme-toggle">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger"><span></span><span></span><span></span></button>
+      <div class="nav-menu">
+        <a href="#" data-page="home" class="active">Home</a>
+        <a href="#" data-page="portfolio">Portfolio</a>
+        <a href="#" data-page="services">Services</a>
+        <a href="#" data-page="pricing">Pricing</a>
+        <a href="#" data-page="blog">Blog</a>
+        <a href="#" data-page="gallery">Gallery</a>
+        <button class="nav-cta" data-page="contact">Contact</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-content">
+        <p class="hero-subtitle" id="hero-subtitle"></p>
+        <h1 class="hero-title" id="hero-title"></h1>
+        <p class="hero-tagline" id="hero-tagline"></p>
+        <div class="hero-actions">
+          <button class="hero-cta" data-page="contact" id="hero-btn-1"></button>
+          <button class="hero-cta-secondary" data-page="portfolio" id="hero-btn-2"></button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-gallery" id="hero-gallery"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Client Testimonials</h2>
+        <p class="section-desc">What our clients say about working with us</p>
+      </div>
+      <div class="testimonial-grid" id="testimonials-container"></div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--paper-dark)">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-desc">A collection of our recent work</p>
+      </div>
+      <div class="masonry-grid" id="portfolio-home"></div>
+      <div style="text-align:center;margin-top:3rem">
+        <button class="hero-cta" data-page="portfolio">View Full Portfolio</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PORTFOLIO PAGE -->
+<div class="page" id="page-portfolio">
+  <section class="section" style="padding-top:140px">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-desc">Browse our complete collection</p>
+      </div>
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="studio">Studio</button>
+        <button class="filter-btn" data-filter="outdoor">Outdoor</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="sports">Sports</button>
+        <button class="filter-btn" data-filter="weddings">Weddings</button>
+      </div>
+      <div class="portfolio-grid" id="portfolio-full"></div>
+    </div>
+  </section>
+</div>
+
+<!-- SERVICES PAGE -->
+<div class="page" id="page-services">
+  <section class="section" style="padding-top:140px">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-desc">Professional photography tailored to your needs</p>
+      </div>
+      <div class="services-grid" id="services-container"></div>
+    </div>
+  </section>
+</div>
+
+<!-- PRICING PAGE -->
+<div class="page" id="page-pricing">
+  <section class="section" style="padding-top:140px">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Pricing</h2>
+        <p class="section-desc">Choose the package that fits your needs</p>
+      </div>
+      <div class="pricing-grid" id="pricing-container"></div>
+    </div>
+  </section>
+  
+  <section class="section" style="background:var(--paper-dark)">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Everything you need to know</p>
+      </div>
+      <div class="faq-container" id="faq-container"></div>
+    </div>
+  </section>
+</div>
+
+<!-- BLOG PAGE -->
+<div class="page" id="page-blog">
+  <section class="section" style="padding-top:140px">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Recent Work</h2>
+        <p class="section-desc">Latest projects and client stories</p>
+      </div>
+      <div class="blog-grid" id="blog-container"></div>
+    </div>
+  </section>
+</div>
+
+<!-- CLIENT GALLERY PAGE -->
+<div class="page" id="page-gallery">
+  <section class="section" style="padding-top:140px;min-height:80vh">
+    <div class="wrap">
+      <div class="gallery-lock" id="gallery-lock">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin:0 auto 1.5rem;opacity:.3">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <h3>Client Gallery</h3>
+        <p style="color:var(--muted);margin-bottom:2rem">This gallery is password protected. Enter your password to view your photos.</p>
+        <input type="password" id="gallery-password" placeholder="Enter password">
+        <button onclick="unlockGallery()">Access Gallery</button>
+        <p id="gallery-error" style="color:#dc3545;margin-top:1rem;display:none">Incorrect password</p>
+      </div>
+      
+      <div class="gallery-content" id="gallery-content">
+        <div class="section-header">
+          <h2 class="section-title">Your Gallery</h2>
+          <p class="section-desc">Download and share your photos</p>
+        </div>
+        <div class="masonry-grid" id="gallery-images"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <section class="section" style="padding-top:140px">
+    <div class="wrap" style="max-width:900px;margin:0 auto">
+      <div class="section-header">
+        <h1 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1rem">Let's Work Together</h1>
+        <p style="font-size:1.15rem;color:var(--muted);line-height:1.8">Ready to capture your special moments? Fill out the form below and we'll get back to you within 24 hours.</p>
+      </div>
+      
+      <!-- Posts to /api/contact (Vercel Serverless Function). See /api/contact.js -->
+      <form class="contact-form" id="contact-form" action="/api/contact" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="event-date">Event Date</label>
+            <input type="date" id="event-date" name="event_date">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="service">Service Type *</label>
+          <select id="service" name="service" required>
+            <option value="">Select a service</option>
+            <option value="wedding">Wedding Photography</option>
+            <option value="portrait">Portrait Session</option>
+            <option value="corporate">Corporate Event</option>
+            <option value="commercial">Commercial Shoot</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Tell us about your project *</label>
+          <textarea id="message" name="message" required placeholder="Share details about your event, vision, location, and any specific requirements..."></textarea>
+        </div>
+
+        <!-- Honeypot: real users leave this blank; bots fill it. -->
+        <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
+
+        <button type="submit" class="form-submit">Send Message</button>
+        <div class="form-success" id="form-success">✓ Message sent successfully! We'll get back to you within 24 hours.</div>
+        <div class="form-error" id="form-error" style="display:none;color:#c0392b;text-align:center;margin-top:1rem">Something went wrong. Please email us directly.</div>
+      </form>
+      
+      <div style="text-align:center;margin-top:3rem;padding-top:3rem;border-top:1px solid var(--border)">
+        <p style="font-size:1.1rem;margin-bottom:1rem;font-weight:600">Prefer to reach out directly?</p>
+        <p style="font-size:1.05rem;margin-bottom:.5rem"><a id="contact-email" style="color:var(--accent);text-decoration:underline"></a></p>
+        <p style="font-size:1.05rem"><a id="contact-phone" style="color:var(--accent);text-decoration:underline"></a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- WhatsApp Float Button -->
+<a id="whatsapp-btn" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.408 1.408-5.245-0.292-0.507c-1.225-2.163-1.87-4.589-1.87-7.070 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62c0 7.51-6.11 13.62-13.62 13.62zM21.305 19.26c-0.346-0.174-2.049-1.007-2.366-1.123-0.316-0.116-0.547-0.174-0.776 0.174s-0.892 1.123-1.094 1.347c-0.201 0.224-0.402 0.251-0.748 0.076-0.346-0.174-1.461-0.539-2.785-1.722-1.031-0.922-1.727-2.061-1.929-2.407-0.201-0.346-0.022-0.533 0.152-0.707 0.156-0.155 0.346-0.402 0.518-0.603 0.174-0.201 0.231-0.346 0.346-0.571 0.116-0.224 0.058-0.427-0.028-0.603s-0.776-1.87-1.063-2.565c-0.28-0.672-0.56-0.58-0.776-0.591-0.201-0.008-0.428-0.010-0.656-0.010s-0.603 0.085-0.92 0.427c-0.316 0.346-1.206 1.179-1.206 2.873s1.235 3.333 1.406 3.561c0.174 0.224 2.425 3.732 5.872 5.234 0.821 0.354 1.462 0.566 1.962 0.724 0.825 0.262 1.577 0.225 2.168 0.137 0.661-0.099 2.049-0.835 2.335-1.642 0.288-0.807 0.288-1.501 0.201-1.642-0.085-0.14-0.316-0.224-0.662-0.398z"/></svg>
+</a>
+
+<!-- Action Buttons -->
+<div class="action-buttons">
+  <a id="action-phone" class="action-btn phone" href="tel:+2349035252179" aria-label="Call us">
+    <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+  </a>
+  <a id="action-email" class="action-btn email" href="mailto:mk4tography@gmail.com" aria-label="Email us">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="mk-img-wrap"><img class="mk-img" src="/images/img-09.png" alt="MK Photography" loading="lazy" decoding="async" onload="this.parentNode.setAttribute('data-loaded','')" onerror="this.parentNode.setAttribute('data-error','')"></div>
+        <p class="footer-brand-desc">Immortalizing the moments. Crafting timeless visual stories since 2021. Based in Benin, Nigeria.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#" data-page="home">Home</a>
+        <a href="#" data-page="portfolio">Portfolio</a>
+        <a href="#" data-page="services">Services</a>
+        <a href="#" data-page="pricing">Pricing</a>
+        <a href="#" data-page="contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#" data-page="services">Weddings</a>
+        <a href="#" data-page="services">Portraits</a>
+        <a href="#" data-page="services">Commercial</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a id="footer-instagram" target="_blank">Instagram</a>
+        <a id="footer-tiktok" target="_blank">TikTok</a>
+        <a id="footer-email">Email</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> MK Photography. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+'use strict';
+
+// Load content from CONFIG
+function loadContent() {
+  document.getElementById('hero-subtitle').textContent = CONFIG.hero.subtitle;
+  document.getElementById('hero-title').textContent = CONFIG.hero.title;
+  document.getElementById('hero-tagline').textContent = CONFIG.hero.tagline;
+  document.getElementById('hero-btn-1').textContent = CONFIG.hero.mainButton;
+  document.getElementById('hero-btn-2').textContent = CONFIG.hero.secondaryButton;
+  
+  const emailLink = document.getElementById('contact-email');
+  emailLink.href = `mailto:${CONFIG.contact.email}`;
+  emailLink.textContent = CONFIG.contact.email;
+  
+  const phoneLink = document.getElementById('contact-phone');
+  phoneLink.href = `tel:${CONFIG.contact.phone}`;
+  phoneLink.textContent = CONFIG.contact.phone;
+  
+  document.getElementById('action-email').href = `mailto:${CONFIG.contact.email}`;
+  document.getElementById('action-phone').href = `tel:${CONFIG.contact.phone.replace(/\s/g,'')}`;
+  document.getElementById('footer-instagram').href = `https://instagram.com/${CONFIG.contact.instagram.replace('@','')}`;
+  document.getElementById('footer-instagram').textContent = 'Instagram';
+  document.getElementById('footer-tiktok').href = `https://tiktok.com/${CONFIG.contact.tiktok}`;
+  document.getElementById('footer-tiktok').textContent = 'TikTok';
+  document.getElementById('footer-email').href = `mailto:${CONFIG.contact.email}`;
+  document.getElementById('footer-email').textContent = 'Email';
+  document.getElementById('whatsapp-btn').href = `https://wa.me/${CONFIG.contact.whatsapp.replace(/[^0-9]/g,'')}?text=${encodeURIComponent("Hi, I'd like to book a photography session")}`;
+  
+  // Testimonials
+  document.getElementById('testimonials-container').innerHTML = CONFIG.testimonials.map(t => `
+    <div class="testimonial-card">
+      <div class="testimonial-stars">${'★'.repeat(t.stars)}</div>
+      <p class="testimonial-text">"${t.text}"</p>
+      <div class="testimonial-author">${t.author}</div>
+      <div class="testimonial-meta">${t.meta}</div>
+    </div>
+  `).join('');
+  
+  // Pricing
+  document.getElementById('pricing-container').innerHTML = CONFIG.pricing.map(p => `
+    <div class="pricing-card ${p.featured ? 'featured' : ''}">
+      <h3 class="pricing-title">${p.name}</h3>
+      <div class="pricing-price">${p.price}<small>/${p.period}</small></div>
+      <p class="pricing-desc">${p.description}</p>
+      <ul class="pricing-features">${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+      <button class="hero-cta" data-page="contact">Book Now</button>
+    </div>
+  `).join('');
+  
+  // Services
+  const iconMap = {
+    wedding: '<path d="M12 2L10.5 8H6l4.5 3.5L8 18l4-3 4 3-2.5-6.5L18 8h-4.5L12 2z"/>',
+    portrait: '<circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>',
+    corporate: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h6"/>'
+  };
+  document.getElementById('services-container').innerHTML = CONFIG.services.map(s => `
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${iconMap[s.icon]||iconMap.portrait}</svg>
+      </div>
+      <h3 class="service-title">${s.title}</h3>
+      <p class="service-desc">${s.description}</p>
+      <ul class="service-features">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>
+      <button class="hero-cta" data-page="contact">Get Started</button>
+    </div>
+  `).join('');
+  
+  // FAQ
+  document.getElementById('faq-container').innerHTML = CONFIG.faq.map((item, i) => `
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(${i})">${item.question}</button>
+      <div class="faq-answer" id="faq-${i}"><p>${item.answer}</p></div>
+    </div>
+  `).join('');
+  
+  // Blog
+  document.getElementById('blog-container').innerHTML = CONFIG.blog.map(post => `
+    <div class="blog-card">
+      <div class="blog-card-image">${mkImg(post.image, post.title, 'lazy')}</div>
+      <div class="blog-card-content">
+        <div class="blog-card-meta">${post.category} — ${post.date}</div>
+        <h3 class="blog-card-title">${post.title}</h3>
+        <p class="blog-card-excerpt">${post.excerpt}</p>
+      </div>
+    </div>
+  `).join('');
+  
+  // Portfolio
+  const portfolioHome = document.getElementById('portfolio-home');
+  const portfolioFull = document.getElementById('portfolio-full');
+  const heroGallery = document.getElementById('hero-gallery');
+  const galleryImages = document.getElementById('gallery-images');
+  
+  portfolioHome.innerHTML = CONFIG.portfolio.slice(0, 6).map(img => `
+    <div class="masonry-item">${mkImg(img.src, img.alt, 'lazy')}</div>
+  `).join('');
+  
+  portfolioFull.innerHTML = CONFIG.portfolio.map(img => `
+    <div class="portfolio-item" data-cat="${img.category}">
+      <div class="masonry-item">${mkImg(img.src, img.alt, 'lazy')}</div>
+    </div>
+  `).join('');
+  
+  // Hero images are above the fold — eager + high priority (FIX: was incorrectly lazy)
+  heroGallery.innerHTML = CONFIG.portfolio.slice(0, 4).map(img => `
+    <div class="hero-gallery-item">${mkImg(img.src, img.alt, 'eager', true)}</div>
+  `).join('');
+  
+  galleryImages.innerHTML = CONFIG.portfolio.map(img => `
+    <div class="masonry-item">${mkImg(img.src, img.alt, 'lazy')}</div>
+  `).join('');
+}
+
+// ─── Image Loading System ────────────────────────────────────────────────────
+// mkImg(src, alt, loading, highPriority)
+//   Returns an HTML string: a .mk-img-wrap containing a .mk-img <img>.
+//   The wrapper shows a shimmer until the image fires onload, then fades in.
+//   On onerror the wrapper shows a clean fallback (no broken icon).
+function mkImg(src, alt, loading = 'lazy', highPriority = false) {
+  const fetchAttr = highPriority ? ' fetchpriority="high"' : '';
+  return `<div class="mk-img-wrap" data-src="${src}">` +
+    `<img class="mk-img" src="${src}" alt="${alt || ''}" ` +
+    `loading="${loading}" decoding="async"${fetchAttr} ` +
+    `onload="this.parentNode.setAttribute('data-loaded','')" ` +
+    `onerror="this.parentNode.setAttribute('data-error','')">` +
+    `</div>`;
+}
+
+// Wire up any .mk-img-wrap that was rendered into static HTML
+// (logo and footer logo — those are not JS-rendered)
+function wireStaticImages() {
+  document.querySelectorAll('.mk-img-wrap:not([data-wired])').forEach(wrap => {
+    wrap.setAttribute('data-wired', '');
+    const img = wrap.querySelector('.mk-img');
+    if (!img) return;
+    if (img.complete && img.naturalWidth > 0) {
+      wrap.setAttribute('data-loaded', '');
+    } else if (img.complete) {
+      wrap.setAttribute('data-error', '');
+    }
+    // onload/onerror are already inline — this just handles already-cached images
+  });
+}
+
+loadContent();
+wireStaticImages();
+
+// FAQ Toggle
+window.toggleFAQ = (index) => {
+  const answer = document.getElementById(`faq-${index}`);
+  const question = answer.previousElementSibling;
+  answer.classList.toggle('active');
+  question.classList.toggle('active');
+};
+
+// Portfolio Filter
+document.addEventListener('click', (e) => {
+  if (e.target.matches('.filter-btn')) {
+    const filter = e.target.dataset.filter;
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+    
+    const items = document.querySelectorAll('.portfolio-item');
+    items.forEach(item => {
+      if (filter === 'all' || item.dataset.cat === filter) {
+        item.classList.remove('hide');
+      } else {
+        item.classList.add('hide');
+      }
+    });
+  }
+});
+
+// Gallery Unlock
+window.unlockGallery = () => {
+  const input = document.getElementById('gallery-password');
+  const error = document.getElementById('gallery-error');
+  if (input.value === CONFIG.galleryPassword) {
+    document.getElementById('gallery-lock').style.display = 'none';
+    document.getElementById('gallery-content').classList.add('unlocked');
+    error.style.display = 'none';
+  } else {
+    error.style.display = 'block';
+  }
+};
+
+// Contact Form — submits to Vercel Serverless Function at /api/contact
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const success = document.getElementById('form-success');
+  const error = document.getElementById('form-error');
+  const submitBtn = form.querySelector('.form-submit');
+  const originalText = submitBtn.textContent;
+
+  error.style.display = 'none';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  try {
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    success.style.display = 'block';
+    form.reset();
+    setTimeout(() => success.style.display = 'none', 5000);
+  } catch (err) {
+    console.error('Form submission failed:', err);
+    error.style.display = 'block';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  }
+});
+
+// Theme toggle
+let theme=localStorage.getItem('theme')||'light';
+const themeBtn=document.querySelector('.theme-toggle');
+const sun=themeBtn.querySelector('.sun');
+const moon=themeBtn.querySelector('.moon');
+const updateTheme=()=>{
+  document.documentElement.setAttribute('data-theme',theme);
+  if(theme==='dark'){sun.style.display='none';moon.style.display='block';}
+  else{sun.style.display='block';moon.style.display='none';}
+};
+updateTheme();
+themeBtn.addEventListener('click',()=>{
+  theme=theme==='dark'?'light':'dark';
+  localStorage.setItem('theme',theme);
+  updateTheme();
+});
+
+// Mobile menu
+const burger=document.querySelector('.burger');
+const menu=document.querySelector('.nav-menu');
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+});
+
+// Hide header on scroll
+let lastScroll=0;
+const header=document.querySelector('.header');
+window.addEventListener('scroll',()=>{
+  const scroll=window.pageYOffset;
+  if(scroll>lastScroll&&scroll>100)header.classList.add('hide');
+  else header.classList.remove('hide');
+  lastScroll=scroll<=0?0:scroll;
+});
+
+// Page navigation
+const pages=['home','portfolio','services','pricing','blog','gallery','contact'];
+const go=(name)=>{
+  pages.forEach(p=>{
+    const el=document.getElementById(`page-${p}`);
+    if(el)el.classList.toggle('active',p===name);
+  });
+  document.querySelectorAll('.nav-menu a, .nav-cta').forEach(a=>a.classList.toggle('active',a.dataset.page===name));
+  window.scrollTo({top:0,behavior:'smooth'});
+  menu.classList.remove('open');
+  burger.classList.remove('open');
+};
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-page]');
+  if(!t)return;
+  e.preventDefault();
+  go(t.dataset.page);
+});
+
+document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
