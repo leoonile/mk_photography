@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MK Photography — Admin</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--fg:#ede9e0;--accent:#c9923a;--muted:#888;
+  --border:rgba(255,255,255,.08);--paper:#141414;--paper2:#1e1e1e;
+  --danger:#e53e3e;--success:#38a169;
+  --sans:'Inter',sans-serif;--serif:'Cormorant Garamond',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--bg);color:var(--fg);min-height:100vh;font-size:14px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+input,select,textarea{font-family:inherit}
+
+/* ── Login Screen ── */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
+.login-box{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:3rem;width:100%;max-width:420px;text-align:center}
+.login-logo{font-family:var(--serif);font-size:2rem;color:var(--accent);margin-bottom:.5rem}
+.login-sub{color:var(--muted);font-size:.85rem;margin-bottom:2.5rem}
+.login-box input{width:100%;padding:.9rem 1rem;background:var(--bg);border:1px solid var(--border);color:var(--fg);border-radius:6px;font-size:.95rem;margin-bottom:1rem}
+.login-box input:focus{outline:none;border-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:6px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-danger:hover{opacity:.85}
+.btn-success{background:var(--success);color:#fff}
+.btn-sm{padding:.4rem .9rem;font-size:.78rem}
+.login-box .btn{width:100%;justify-content:center}
+.error-msg{color:var(--danger);font-size:.85rem;margin-top:.75rem;min-height:1.2em}
+
+/* ── App Layout ── */
+.app{display:none;min-height:100vh}
+.app.visible{display:flex;flex-direction:column}
+.topbar{background:var(--paper);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar-brand{font-family:var(--serif);font-size:1.25rem;color:var(--accent)}
+.topbar-right{display:flex;align-items:center;gap:1rem}
+.topbar-user{font-size:.8rem;color:var(--muted)}
+.main{display:flex;flex:1;gap:0}
+.sidebar{width:220px;background:var(--paper);border-right:1px solid var(--border);padding:1.5rem 0;flex-shrink:0;position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto}
+.nav-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 1.5rem;font-size:.875rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.nav-item:hover{color:var(--fg);background:rgba(255,255,255,.03)}
+.nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(201,146,58,.06)}
+.nav-item svg{width:18px;height:18px;flex-shrink:0}
+.content{flex:1;padding:2rem;overflow-y:auto;max-width:1100px}
+
+/* ── Cards / Panels ── */
+.panel{background:var(--paper);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem}
+.panel-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-size:.95rem;font-weight:600}
+.panel-body{padding:1.5rem}
+
+/* ── Forms ── */
+.form-group{margin-bottom:1.25rem}
+.form-label{display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.5rem}
+.form-input{width:100%;padding:.75rem 1rem;background:var(--bg);border:1px solid var(--border);color:var(--fg);border-radius:6px;font-size:.9rem;transition:border-color .2s}
+.form-input:focus{outline:none;border-color:var(--accent)}
+.form-input::placeholder{color:#555}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+select.form-input option{background:var(--bg)}
+
+/* ── Gallery Grid ── */
+.galleries-list{display:flex;flex-direction:column;gap:.75rem}
+.gallery-row{background:var(--paper2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;transition:border-color .2s}
+.gallery-row:hover{border-color:rgba(255,255,255,.15)}
+.gallery-dot{width:10px;height:10px;border-radius:50%;background:var(--success);flex-shrink:0}
+.gallery-dot.inactive{background:var(--danger)}
+.gallery-info{flex:1;min-width:0}
+.gallery-name{font-weight:600;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gallery-meta{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+.gallery-actions{display:flex;gap:.5rem;flex-shrink:0}
+
+/* ── Image Upload ── */
+.upload-zone{border:2px dashed var(--border);border-radius:8px;padding:3rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg)}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:rgba(201,146,58,.04)}
+.upload-zone-icon{font-size:2.5rem;margin-bottom:1rem;opacity:.4}
+.upload-zone-text{color:var(--muted);font-size:.9rem}
+.upload-zone-text strong{color:var(--fg)}
+#file-input{display:none}
+.upload-progress{margin-top:1.5rem}
+.progress-item{display:flex;align-items:center;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.progress-item:last-child{border:none}
+.progress-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;background:var(--accent);border-radius:2px;transition:width .3s}
+.progress-status{font-size:.75rem;color:var(--muted);white-space:nowrap}
+
+/* ── Photo Grid ── */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem}
+.photo-card{position:relative;border-radius:6px;overflow:hidden;background:var(--paper2);border:1px solid var(--border);transition:border-color .2s}
+.photo-card:hover{border-color:rgba(255,255,255,.2)}
+.photo-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.photo-card-footer{padding:.6rem .75rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.photo-card-filename{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.portfolio-toggle{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;cursor:pointer;color:var(--muted);transition:color .2s;flex-shrink:0}
+.portfolio-toggle.active{color:var(--accent)}
+.portfolio-toggle svg{width:14px;height:14px}
+.delete-photo-btn{width:22px;height:22px;border-radius:50%;background:rgba(229,62,62,.15);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0}
+.delete-photo-btn:hover{background:var(--danger)}
+.delete-photo-btn svg{width:11px;height:11px;fill:#fff}
+.in-portfolio-badge{position:absolute;top:6px;right:6px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;padding:.2rem .45rem;border-radius:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ── Stats ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
+.stat-number{font-family:var(--serif);font-size:2.5rem;color:var(--accent);line-height:1}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:.4rem;text-transform:uppercase;letter-spacing:.06em}
+
+/* ── Modal ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--paper);border:1px solid var(--border);border-radius:10px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+.modal-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-weight:600;font-size:1rem}
+.modal-close{width:30px;height:30px;border-radius:50%;background:var(--paper2);border:none;color:var(--fg);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.modal-body{padding:1.5rem}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:.75rem}
+
+/* ── Category Select ── */
+.category-modal{max-width:380px}
+.cat-options{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
+.cat-option{padding:.7rem;border:1px solid var(--border);border-radius:6px;text-align:center;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .2s}
+.cat-option:hover{border-color:var(--accent);color:var(--accent)}
+.cat-option.selected{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── Toast ── */
+.toast-wrap{position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;display:flex;flex-direction:column;gap:.5rem}
+.toast{background:var(--paper2);border:1px solid var(--border);border-radius:6px;padding:.75rem 1.25rem;font-size:.85rem;display:flex;align-items:center;gap:.5rem;animation:slideUp .25s ease;min-width:220px;max-width:340px}
+.toast.success{border-color:var(--success);color:var(--success)}
+.toast.error{border-color:var(--danger);color:var(--danger)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Misc ── */
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.empty-state-icon{font-size:3rem;opacity:.3;margin-bottom:1rem}
+.badge{display:inline-flex;align-items:center;padding:.2rem .6rem;border-radius:4px;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.badge-active{background:rgba(56,161,105,.15);color:var(--success)}
+.badge-inactive{background:rgba(229,62,62,.15);color:var(--danger)}
+.divider{height:1px;background:var(--border);margin:1.5rem 0}
+.text-muted{color:var(--muted)}
+.text-accent{color:var(--accent)}
+.mt-1{margin-top:.5rem}.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}
+.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.5rem}.gap-2{gap:1rem}
+
+@media(max-width:768px){
+  .sidebar{display:none}
+  .form-row{grid-template-columns:1fr}
+  .photo-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ── -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">MK Photography</div>
+    <div class="login-sub">Admin Panel</div>
+    <input type="password" id="admin-password" placeholder="Enter admin password" autocomplete="current-password">
+    <div class="error-msg" id="login-error"></div>
+    <button class="btn btn-primary mt-2" id="login-btn" onclick="adminLogin()">
+      Sign In
+    </button>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div class="app" id="app">
+  <div class="topbar">
+    <div class="topbar-brand">MK Admin</div>
+    <div class="topbar-right">
+      <span class="topbar-user">MK Photography</span>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="nav-item active" onclick="showSection('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" onclick="showSection('galleries')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Client Galleries
+      </div>
+      <div class="nav-item" onclick="showSection('new-gallery')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        New Gallery
+      </div>
+      <div class="nav-item" onclick="showSection('portfolio')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Portfolio
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- DASHBOARD -->
+      <section id="section-dashboard">
+        <h1 style="font-family:var(--serif);font-size:1.8rem;margin-bottom:1.5rem">Dashboard</h1>
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card"><div class="stat-number" id="stat-galleries">—</div><div class="stat-label">Total Galleries</div></div>
+          <div class="stat-card"><div class="stat-number" id="stat-active">—</div><div class="stat-label">Active</div></div>
+          <div class="stat-card"><div class="stat-number" id="stat-photos">—</div><div class="stat-label">Total Photos</div></div>
+          <div class="stat-card"><div class="stat-number" id="stat-portfolio">—</div><div class="stat-label">In Portfolio</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">Recent Galleries</span><button class="btn btn-ghost btn-sm" onclick="showSection('galleries')">View All</button></div>
+          <div class="panel-body" id="recent-galleries-list"><div class="empty-state"><div class="empty-state-icon">📁</div><div>No galleries yet</div></div></div>
+        </div>
+      </section>
+
+      <!-- GALLERIES LIST -->
+      <section id="section-galleries" style="display:none">
+        <div class="flex items-center justify-between" style="margin-bottom:1.5rem">
+          <h1 style="font-family:var(--serif);font-size:1.8rem">Client Galleries</h1>
+          <button class="btn btn-primary" onclick="showSection('new-gallery')">+ New Gallery</button>
+        </div>
+        <div id="galleries-list-container"><div class="empty-state"><div class="empty-state-icon">📁</div><div>Loading...</div></div></div>
+      </section>
+
+      <!-- NEW GALLERY FORM -->
+      <section id="section-new-gallery" style="display:none">
+        <h1 style="font-family:var(--serif);font-size:1.8rem;margin-bottom:1.5rem">Create New Gallery</h1>
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">Gallery Details</span></div>
+          <div class="panel-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Client Name *</label>
+                <input class="form-input" id="new-client-name" placeholder="e.g. Blessing & Emeka" oninput="autoSlug()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Gallery Slug * <span class="text-muted">(URL-safe)</span></label>
+                <input class="form-input" id="new-slug" placeholder="e.g. blessing-emeka-2025">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Event Date</label>
+                <input class="form-input" id="new-event-date" type="date">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Event Type</label>
+                <select class="form-input" id="new-event-type">
+                  <option value="">Select type</option>
+                  <option value="Traditional Wedding">Traditional Wedding</option>
+                  <option value="White Wedding">White Wedding</option>
+                  <option value="Portrait Session">Portrait Session</option>
+                  <option value="Corporate Event">Corporate Event</option>
+                  <option value="Sports Event">Sports Event</option>
+                  <option value="Commercial Shoot">Commercial Shoot</option>
+                  <option value="Graduation">Graduation</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Client Password * <span class="text-muted">(what your client will use to log in)</span></label>
+              <input class="form-input" id="new-password" type="password" placeholder="Set a strong password for this client">
+            </div>
+            <div style="background:rgba(201,146,58,.08);border:1px solid rgba(201,146,58,.2);border-radius:6px;padding:1rem;margin-bottom:1.5rem;font-size:.82rem;color:var(--muted)">
+              💡 <strong style="color:var(--fg)">Share with client:</strong> Send them your gallery page URL + their slug + this password. E.g. <em>yourdomain.com → Gallery → "blessing-emeka-2025" → their password</em>
+            </div>
+            <button class="btn btn-primary" id="create-gallery-btn" onclick="createGallery()">Create Gallery</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY DETAIL (upload + manage) -->
+      <section id="section-gallery-detail" style="display:none">
+        <div class="flex items-center gap-2" style="margin-bottom:1.5rem">
+          <button class="btn btn-ghost btn-sm" onclick="showSection('galleries')">← Back</button>
+          <h1 style="font-family:var(--serif);font-size:1.8rem" id="detail-title">Gallery</h1>
+          <span id="detail-badge"></span>
+        </div>
+
+        <!-- Gallery info bar -->
+        <div id="detail-info-bar" style="margin-bottom:1.5rem;color:var(--muted);font-size:.85rem"></div>
+
+        <!-- Actions bar -->
+        <div class="flex gap-1" style="margin-bottom:1.5rem;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="openUploadModal()">Upload Photos</button>
+          <button class="btn btn-ghost" id="toggle-active-btn" onclick="toggleGalleryActive()">Deactivate</button>
+          <button class="btn btn-ghost" onclick="openEditModal()">Edit Details</button>
+          <button class="btn btn-danger" onclick="confirmDeleteGallery()">Delete Gallery</button>
+        </div>
+
+        <!-- Upload zone (inline) -->
+        <div id="upload-section" style="display:none;margin-bottom:1.5rem">
+          <div class="panel">
+            <div class="panel-header"><span class="panel-title">Upload Photos</span><button class="btn btn-ghost btn-sm" onclick="closeUploadSection()">Close</button></div>
+            <div class="panel-body">
+              <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+                <div class="upload-zone-icon">📸</div>
+                <div class="upload-zone-text"><strong>Click to select photos</strong> or drag and drop here</div>
+                <div class="upload-zone-text mt-1" style="font-size:.78rem">JPG, PNG, WEBP — multiple files supported</div>
+              </div>
+              <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(this.files)">
+              <div class="upload-progress" id="upload-progress"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo grid -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Photos <span id="photo-count" class="text-muted"></span></span>
+            <span style="font-size:.78rem;color:var(--muted)">★ = in portfolio</span>
+          </div>
+          <div class="panel-body">
+            <div id="photo-grid-container"><div class="empty-state"><div class="empty-state-icon">🖼️</div><div>No photos yet — upload some above</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO VIEW -->
+      <section id="section-portfolio" style="display:none">
+        <h1 style="font-family:var(--serif);font-size:1.8rem;margin-bottom:.5rem">Portfolio Photos</h1>
+        <p class="text-muted" style="margin-bottom:1.5rem;font-size:.875rem">Photos marked ★ from any gallery appear here and on the live site automatically.</p>
+        <div id="portfolio-grid-container"><div class="empty-state"><div class="empty-state-icon">🖼️</div><div>No portfolio photos yet</div></div></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ── MODALS ── -->
+
+<!-- Category picker -->
+<div class="modal-overlay" id="category-modal">
+  <div class="modal category-modal">
+    <div class="modal-header">
+      <span class="modal-title">Add to Portfolio</span>
+      <button class="modal-close" onclick="closeCategoryModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-muted" style="margin-bottom:1rem;font-size:.85rem">Select which portfolio category this photo belongs to:</p>
+      <div class="cat-options">
+        <div class="cat-option" onclick="selectCategory('studio')">Studio</div>
+        <div class="cat-option" onclick="selectCategory('outdoor')">Outdoor</div>
+        <div class="cat-option" onclick="selectCategory('weddings')">Weddings</div>
+        <div class="cat-option" onclick="selectCategory('events')">Events</div>
+        <div class="cat-option" onclick="selectCategory('sports')">Sports</div>
+        <div class="cat-option" onclick="selectCategory('commercial')">Commercial</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeCategoryModal()">Cancel</button>
+      <button class="btn btn-primary" id="confirm-portfolio-btn" onclick="confirmPortfolio()">Add to Portfolio</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit gallery modal -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Edit Gallery</span>
+      <button class="modal-close" onclick="closeEditModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Client Name</label>
+        <input class="form-input" id="edit-client-name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Event Date</label>
+          <input class="form-input" id="edit-event-date" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Event Type</label>
+          <select class="form-input" id="edit-event-type">
+            <option value="">Select type</option>
+            <option value="Traditional Wedding">Traditional Wedding</option>
+            <option value="White Wedding">White Wedding</option>
+            <option value="Portrait Session">Portrait Session</option>
+            <option value="Corporate Event">Corporate Event</option>
+            <option value="Sports Event">Sports Event</option>
+            <option value="Commercial Shoot">Commercial Shoot</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">New Password <span class="text-muted">(leave blank to keep current)</span></label>
+        <input class="form-input" id="edit-password" type="password" placeholder="Enter new password to change it">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveGalleryEdits()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+const API = '/api/admin';
+let adminToken = sessionStorage.getItem('mk_admin_token') || '';
+let currentGallery = null;
+let pendingPortfolioImageId = null;
+let selectedCategory = null;
+let allGalleries = [];
+
+// ── Boot ─────────────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  if (adminToken) showApp();
+  document.getElementById('admin-password').addEventListener('keydown', e => {
+    if (e.key === 'Enter') adminLogin();
+  });
+});
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+async function adminLogin() {
+  const pw = document.getElementById('admin-password').value.trim();
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('login-error');
+  if (!pw) { err.textContent = 'Enter your password'; return; }
+
+  btn.disabled = true; btn.textContent = 'Signing in...';
+  err.textContent = '';
+
+  try {
+    const res = await fetch(`${API}?action=login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw }),
+    });
+    const data = await res.json();
+    if (!res.ok) { err.textContent = data.error || 'Login failed'; return; }
+
+    adminToken = data.token;
+    sessionStorage.setItem('mk_admin_token', adminToken);
+    showApp();
+  } catch {
+    err.textContent = 'Connection error';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Sign In';
+  }
+}
+
+function logout() {
+  adminToken = '';
+  sessionStorage.removeItem('mk_admin_token');
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-password').value = '';
+}
+
+function showApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').classList.add('visible');
+  loadDashboard();
+}
+
+// ── API helper ────────────────────────────────────────────────────────────────
+async function api(action, method = 'GET', body = null, isMultipart = false) {
+  const opts = {
+    method,
+    headers: { Authorization: `Bearer ${adminToken}` },
+  };
+  if (body && !isMultipart) {
+    opts.headers['Content-Type'] = 'application/json';
+    opts.body = JSON.stringify(body);
+  } else if (body && isMultipart) {
+    opts.body = body; // FormData
+  }
+  const res = await fetch(`${API}?action=${action}`, opts);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'API error');
+  return data;
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function showSection(name) {
+  document.querySelectorAll('[id^="section-"]').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`section-${name}`).style.display = 'block';
+  document.querySelector(`.nav-item[onclick*="${name}"]`)?.classList.add('active');
+
+  if (name === 'galleries') loadGalleries();
+  if (name === 'dashboard') loadDashboard();
+  if (name === 'portfolio') loadPortfolioView();
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+async function loadDashboard() {
+  try {
+    const data = await api('galleries');
+    allGalleries = data.galleries || [];
+    const active = allGalleries.filter(g => g.is_active).length;
+    const totalPhotos = allGalleries.reduce((sum, g) => sum + (g.gallery_images?.[0]?.count || 0), 0);
+
+    document.getElementById('stat-galleries').textContent = allGalleries.length;
+    document.getElementById('stat-active').textContent = active;
+    document.getElementById('stat-photos').textContent = totalPhotos;
+
+    // Portfolio count
+    try {
+      const pd = await api('portfolio-images');
+      document.getElementById('stat-portfolio').textContent = pd.images?.length || 0;
+    } catch {}
+
+    const recent = allGalleries.slice(0, 5);
+    document.getElementById('recent-galleries-list').innerHTML = recent.length
+      ? recent.map(g => galleryRowHTML(g)).join('')
+      : '<div class="empty-state"><div class="empty-state-icon">📁</div><div>No galleries yet</div></div>';
+  } catch (e) {
+    toast('Failed to load dashboard', 'error');
+  }
+}
+
+// ── Galleries List ────────────────────────────────────────────────────────────
+async function loadGalleries() {
+  document.getElementById('galleries-list-container').innerHTML = '<div class="empty-state"><div>Loading...</div></div>';
+  try {
+    const data = await api('galleries');
+    allGalleries = data.galleries || [];
+    renderGalleriesList();
+  } catch {
+    toast('Failed to load galleries', 'error');
+  }
+}
+
+function renderGalleriesList() {
+  const el = document.getElementById('galleries-list-container');
+  if (!allGalleries.length) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📁</div><div>No galleries yet. <span class="text-accent" style="cursor:pointer" onclick="showSection(\'new-gallery\')">Create one →</span></div></div>';
+    return;
+  }
+  el.innerHTML = `<div class="galleries-list">${allGalleries.map(g => galleryRowHTML(g)).join('')}</div>`;
+}
+
+function galleryRowHTML(g) {
+  const count = g.gallery_images?.[0]?.count || 0;
+  const date = g.event_date ? new Date(g.event_date).toLocaleDateString('en-NG', { day:'numeric', month:'short', year:'numeric' }) : '';
+  return `
+    <div class="gallery-row">
+      <div class="gallery-dot ${g.is_active ? '' : 'inactive'}"></div>
+      <div class="gallery-info">
+        <div class="gallery-name">${g.client_name}</div>
+        <div class="gallery-meta">${g.event_type || ''}${date ? ' · ' + date : ''} · ${count} photo${count !== 1 ? 's' : ''} · /${g.slug}</div>
+      </div>
+      <div class="gallery-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openGalleryDetail('${g.id}')">Manage</button>
+      </div>
+    </div>`;
+}
+
+// ── Gallery Detail ────────────────────────────────────────────────────────────
+async function openGalleryDetail(galleryId) {
+  const gallery = allGalleries.find(g => g.id === galleryId)
+    || (await api('galleries')).galleries.find(g => g.id === galleryId);
+
+  currentGallery = gallery;
+  showSection('gallery-detail');
+
+  document.getElementById('detail-title').textContent = gallery.client_name;
+  document.getElementById('detail-badge').innerHTML =
+    `<span class="badge ${gallery.is_active ? 'badge-active' : 'badge-inactive'}">${gallery.is_active ? 'Active' : 'Inactive'}</span>`;
+  document.getElementById('toggle-active-btn').textContent = gallery.is_active ? 'Deactivate' : 'Activate';
+
+  const date = gallery.event_date ? new Date(gallery.event_date).toLocaleDateString('en-NG', { day:'numeric', month:'long', year:'numeric' }) : '';
+  document.getElementById('detail-info-bar').innerHTML =
+    `<span>${gallery.event_type || 'Event'}${date ? ' · ' + date : ''}</span> &nbsp;·&nbsp; <span>Slug: <strong style="color:var(--fg)">${gallery.slug}</strong></span>`;
+
+  loadGalleryPhotos(galleryId);
+}
+
+async function loadGalleryPhotos(galleryId) {
+  document.getElementById('photo-grid-container').innerHTML = '<div class="empty-state"><div>Loading photos...</div></div>';
+  try {
+    const data = await api(`gallery-images&gallery_id=${galleryId}`);
+    const images = data.images || [];
+    document.getElementById('photo-count').textContent = `(${images.length})`;
+
+    if (!images.length) {
+      document.getElementById('photo-grid-container').innerHTML =
+        '<div class="empty-state"><div class="empty-state-icon">🖼️</div><div>No photos yet — click Upload Photos above</div></div>';
+      return;
+    }
+
+    document.getElementById('photo-grid-container').innerHTML =
+      `<div class="photo-grid">${images.map(img => photoCardHTML(img)).join('')}</div>`;
+  } catch (e) {
+    toast('Failed to load photos', 'error');
+  }
+}
+
+function photoCardHTML(img) {
+  const thumb = img.cloudinary_url.replace('/upload/', '/upload/w_300,c_fill,q_auto/');
+  return `
+    <div class="photo-card" id="photo-${img.id}">
+      ${img.in_portfolio ? `<div class="in-portfolio-badge">★ ${img.portfolio_category || ''}</div>` : ''}
+      <img src="${thumb}" alt="${img.filename || ''}" loading="lazy">
+      <div class="photo-card-footer">
+        <span class="photo-card-filename">${img.filename || 'photo'}</span>
+        <span class="portfolio-toggle ${img.in_portfolio ? 'active' : ''}" onclick="togglePortfolio('${img.id}', ${img.in_portfolio}, '${img.portfolio_category || ''}')">
+          <svg viewBox="0 0 24 24" fill="${img.in_portfolio ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ${img.in_portfolio ? 'In Portfolio' : 'Portfolio'}
+        </span>
+        <button class="delete-photo-btn" onclick="deletePhoto('${img.id}')" title="Delete">
+          <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+// ── Create Gallery ────────────────────────────────────────────────────────────
+function autoSlug() {
+  const name = document.getElementById('new-client-name').value;
+  const slug = name.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+  document.getElementById('new-slug').value = slug + '-' + new Date().getFullYear();
+}
+
+async function createGallery() {
+  const client_name = document.getElementById('new-client-name').value.trim();
+  const slug        = document.getElementById('new-slug').value.trim();
+  const password    = document.getElementById('new-password').value;
+  const event_date  = document.getElementById('new-event-date').value;
+  const event_type  = document.getElementById('new-event-type').value;
+
+  if (!client_name || !slug || !password) {
+    toast('Please fill in client name, slug and password', 'error'); return;
+  }
+
+  const btn = document.getElementById('create-gallery-btn');
+  btn.disabled = true; btn.textContent = 'Creating...';
+
+  try {
+    const data = await api('create-gallery', 'POST', { client_name, slug, password, event_date, event_type });
+    toast(`Gallery created for ${client_name}!`, 'success');
+    // Clear form
+    ['new-client-name','new-slug','new-password','new-event-date'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('new-event-type').value = '';
+    allGalleries.unshift(data.gallery);
+    openGalleryDetail(data.gallery.id);
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Create Gallery';
+  }
+}
+
+// ── Upload ────────────────────────────────────────────────────────────────────
+function openUploadModal() {
+  document.getElementById('upload-section').style.display = 'block';
+  document.getElementById('upload-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function closeUploadSection() {
+  document.getElementById('upload-section').style.display = 'none';
+}
+function onDragOver(e) { e.preventDefault(); document.getElementById('upload-zone').classList.add('dragover'); }
+function onDragLeave()  { document.getElementById('upload-zone').classList.remove('dragover'); }
+function onDrop(e)      { e.preventDefault(); onDragLeave(); handleFiles(e.dataTransfer.files); }
+
+async function handleFiles(files) {
+  if (!files.length || !currentGallery) return;
+  const filesArr = Array.from(files);
+  const progressEl = document.getElementById('upload-progress');
+  progressEl.innerHTML = '';
+
+  // Upload in batches of 3
+  for (let i = 0; i < filesArr.length; i += 3) {
+    const batch = filesArr.slice(i, i + 3);
+    await Promise.all(batch.map(file => uploadSingleFile(file, progressEl)));
+  }
+
+  toast(`Uploaded ${filesArr.length} photo${filesArr.length > 1 ? 's' : ''}!`, 'success');
+  setTimeout(() => { loadGalleryPhotos(currentGallery.id); }, 500);
+}
+
+function uploadSingleFile(file, progressEl) {
+  return new Promise(resolve => {
+    const itemId = `prog-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    progressEl.insertAdjacentHTML('beforeend', `
+      <div class="progress-item" id="${itemId}">
+        <span style="flex:0 0 140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.78rem">${file.name}</span>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="${itemId}-bar" style="width:0%"></div></div>
+        <span class="progress-status" id="${itemId}-status">Uploading...</span>
+      </div>`);
+
+    const bar    = document.getElementById(`${itemId}-bar`);
+    const status = document.getElementById(`${itemId}-status`);
+
+    // Simulate progress while uploading
+    let pct = 0;
+    const interval = setInterval(() => {
+      pct = Math.min(pct + Math.random() * 15, 90);
+      bar.style.width = pct + '%';
+    }, 200);
+
+    const fd = new FormData();
+    fd.append('gallery_id', currentGallery.id);
+    fd.append('image', file, file.name);
+
+    fetch(`${API}?action=upload-images`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: fd,
+    })
+      .then(r => r.json())
+      .then(data => {
+        clearInterval(interval);
+        if (data.errors?.length) {
+          bar.style.width = '100%'; bar.style.background = 'var(--danger)';
+          status.textContent = 'Failed'; status.style.color = 'var(--danger)';
+        } else {
+          bar.style.width = '100%'; bar.style.background = 'var(--success)';
+          status.textContent = '✓ Done'; status.style.color = 'var(--success)';
+        }
+        resolve();
+      })
+      .catch(() => {
+        clearInterval(interval);
+        bar.style.background = 'var(--danger)'; status.textContent = 'Error';
+        resolve();
+      });
+  });
+}
+
+// ── Portfolio Toggle ──────────────────────────────────────────────────────────
+function togglePortfolio(imageId, currentlyIn, currentCategory) {
+  if (currentlyIn) {
+    // Remove from portfolio immediately
+    api('toggle-portfolio', 'PUT', { image_id: imageId, in_portfolio: false })
+      .then(() => {
+        toast('Removed from portfolio', 'success');
+        loadGalleryPhotos(currentGallery.id);
+      })
+      .catch(e => toast(e.message, 'error'));
+  } else {
+    // Open category picker
+    pendingPortfolioImageId = imageId;
+    selectedCategory = null;
+    document.querySelectorAll('.cat-option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('category-modal').classList.add('open');
+  }
+}
+
+function selectCategory(cat) {
+  selectedCategory = cat;
+  document.querySelectorAll('.cat-option').forEach(o => {
+    o.classList.toggle('selected', o.textContent.toLowerCase() === cat);
+  });
+}
+
+function closeCategoryModal() {
+  document.getElementById('category-modal').classList.remove('open');
+  pendingPortfolioImageId = null;
+  selectedCategory = null;
+}
+
+async function confirmPortfolio() {
+  if (!selectedCategory) { toast('Please select a category', 'error'); return; }
+  const btn = document.getElementById('confirm-portfolio-btn');
+  btn.disabled = true;
+  try {
+    await api('toggle-portfolio', 'PUT', {
+      image_id: pendingPortfolioImageId,
+      in_portfolio: true,
+      portfolio_category: selectedCategory,
+    });
+    toast(`Added to ${selectedCategory} portfolio!`, 'success');
+    closeCategoryModal();
+    loadGalleryPhotos(currentGallery.id);
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ── Delete Photo ──────────────────────────────────────────────────────────────
+async function deletePhoto(imageId) {
+  if (!confirm('Delete this photo? This cannot be undone.')) return;
+  try {
+    await api('delete-image', 'DELETE', { image_id: imageId });
+    toast('Photo deleted', 'success');
+    document.getElementById(`photo-${imageId}`)?.remove();
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+// ── Toggle Gallery Active ─────────────────────────────────────────────────────
+async function toggleGalleryActive() {
+  if (!currentGallery) return;
+  const newState = !currentGallery.is_active;
+  try {
+    await api('update-gallery', 'PUT', { gallery_id: currentGallery.id, is_active: newState });
+    currentGallery.is_active = newState;
+    document.getElementById('detail-badge').innerHTML =
+      `<span class="badge ${newState ? 'badge-active' : 'badge-inactive'}">${newState ? 'Active' : 'Inactive'}</span>`;
+    document.getElementById('toggle-active-btn').textContent = newState ? 'Deactivate' : 'Activate';
+    toast(`Gallery ${newState ? 'activated' : 'deactivated'}`, 'success');
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+// ── Edit Gallery ──────────────────────────────────────────────────────────────
+function openEditModal() {
+  if (!currentGallery) return;
+  document.getElementById('edit-client-name').value = currentGallery.client_name;
+  document.getElementById('edit-event-date').value = currentGallery.event_date || '';
+  document.getElementById('edit-event-type').value = currentGallery.event_type || '';
+  document.getElementById('edit-password').value = '';
+  document.getElementById('edit-modal').classList.add('open');
+}
+function closeEditModal() { document.getElementById('edit-modal').classList.remove('open'); }
+
+async function saveGalleryEdits() {
+  const updates = {
+    gallery_id:   currentGallery.id,
+    client_name:  document.getElementById('edit-client-name').value.trim(),
+    event_date:   document.getElementById('edit-event-date').value,
+    event_type:   document.getElementById('edit-event-type').value,
+    new_password: document.getElementById('edit-password').value,
+  };
+  try {
+    const data = await api('update-gallery', 'PUT', updates);
+    currentGallery = { ...currentGallery, ...data.gallery };
+    document.getElementById('detail-title').textContent = currentGallery.client_name;
+    closeEditModal();
+    toast('Gallery updated!', 'success');
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+// ── Delete Gallery ────────────────────────────────────────────────────────────
+async function confirmDeleteGallery() {
+  if (!confirm(`Delete gallery for "${currentGallery.client_name}"?\n\nThis will permanently delete all photos. This cannot be undone.`)) return;
+  try {
+    await api('delete-gallery', 'DELETE', { gallery_id: currentGallery.id });
+    toast('Gallery deleted', 'success');
+    allGalleries = allGalleries.filter(g => g.id !== currentGallery.id);
+    currentGallery = null;
+    showSection('galleries');
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+// ── Portfolio View ────────────────────────────────────────────────────────────
+async function loadPortfolioView() {
+  document.getElementById('portfolio-grid-container').innerHTML = '<div class="empty-state"><div>Loading...</div></div>';
+  try {
+    const data = await api('portfolio-images');
+    const images = data.images || [];
+    if (!images.length) {
+      document.getElementById('portfolio-grid-container').innerHTML =
+        '<div class="empty-state"><div class="empty-state-icon">🖼️</div><div>No portfolio photos yet. Open a gallery and click ★ on photos to add them.</div></div>';
+      return;
+    }
+    document.getElementById('portfolio-grid-container').innerHTML = `
+      <div class="photo-grid">
+        ${images.map(img => {
+          const thumb = img.cloudinary_url.replace('/upload/', '/upload/w_300,c_fill,q_auto/');
+          return `<div class="photo-card">
+            <div class="in-portfolio-badge">${img.portfolio_category || 'portfolio'}</div>
+            <img src="${thumb}" alt="${img.filename || ''}" loading="lazy">
+            <div class="photo-card-footer">
+              <span class="photo-card-filename">${img.filename || 'photo'}</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`;
+  } catch (e) {
+    toast('Failed to load portfolio', 'error');
+  }
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function toast(msg, type = 'success') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = type === 'success' ? '✓ ' + msg : '✕ ' + msg;
+  document.getElementById('toast-wrap').appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+</script>
+</body>
+</html>
