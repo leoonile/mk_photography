@@ -12,16 +12,17 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { ContactSection } from "@/components/ContactSection";
 
 const SLIDESHOW_IMAGES = [
-  "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2000&auto=format&fit=crop"
+  "/images/hero/hero-1.jpg",
+  "/images/hero/hero-2.jpg",
+  "/images/hero/hero-3.jpg",
+  "/images/hero/hero-4.jpg"
 ];
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
-    const slideInterval = 4000; // Change image every 4 seconds
+    const slideInterval = 4000;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
     }, slideInterval);
@@ -51,31 +52,44 @@ export default function Home() {
 
         {/* Left-aligned Content */}
         <div className="hero-content">
-          <motion.h1 
-            className="title-xl"
-            initial={{ opacity: 0, y: 30 }}
+          <motion.div 
+            className="hero-eyebrow"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            MK<br />Photography
+            IMMORTALIZING THE MOMENTS
+          </motion.div>
+          
+          <motion.h1 
+            className="title-jop"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+          >
+            MK<br /><i>Photography</i>
           </motion.h1>
+          
           <motion.p 
             className="text-body"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            style={{ color: "rgba(255, 255, 255, 0.85)" }}
           >
             Award-winning Benin photographer specializing in events, portraits, and lifestyle moments that tell
             authentic stories.
           </motion.p>
+          
           <motion.div 
             className="btn-group"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
             <a href="#pricing" className="btn-primary">Book Your Session</a>
             <a href="#portfolio" className="btn-outline">View Portfolio</a>

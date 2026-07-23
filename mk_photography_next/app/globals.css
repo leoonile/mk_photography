@@ -232,6 +232,7 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 15%;
     opacity: 0;
     transition: opacity 1200ms ease-in-out;
 }
@@ -243,16 +244,52 @@ h3 {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.2) 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
     z-index: -1;
 }
 
 /* ── Hero Content Layout ── */
 .hero-content {
-    position: relative;
+    position: absolute;
+    bottom: 8%;
+    left: 5%;
     z-index: 1;
-    max-width: 600px;
-    margin-top: 4rem;
+    max-width: 800px;
+}
+
+.hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--accent);
+}
+
+.title-jop {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+.title-jop i {
+    font-style: italic;
+    font-family: var(--serif);
 }
 
 .btn-group {
@@ -262,28 +299,38 @@ h3 {
 
 .btn-primary {
     background: var(--accent);
-    color: #fff;
-    padding: 1rem 2rem;
+    color: #000;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     border: 1px solid var(--accent);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
 }
 
 .btn-outline {
     background: transparent;
-    color: var(--fg);
-    padding: 1rem 2rem;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 1px solid var(--border);
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
-    border-color: var(--fg);
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* ── Floating Contact Widgets ── */
@@ -619,3 +666,105 @@ h3 {
     background: var(--accent);
     color: var(--bg);
 }
+
+/* ── Services Sticky Scroll ── */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-left-col {
+    position: sticky;
+    top: 8rem;
+    padding-right: 2rem;
+}
+
+.services-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+}
+
+.service-card-img-container {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+.service-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-card-content {
+    padding: 2.5rem;
+}
+
+.service-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        gap: 1rem;
+        grid-template-columns: 1fr 1.5fr;
+    }
+    
+    .services-left-col {
+        padding-right: 0;
+        top: 5rem;
+    }
+    
+    .services-left-col .title-lg {
+        font-size: 1.2rem !important;
+    }
+    
+    .services-left-col .text-body {
+        font-size: 0.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .services-left-col > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .services-left-col .btn-primary,
+    .services-left-col .btn-outline {
+        padding: 0.5rem !important;
+        font-size: 0.7rem !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    .services-right-col {
+        gap: 2rem;
+    }
+
+    .service-card-img-container {
+        height: 150px;
+    }
+    
+    .service-card-content {
+        padding: 0.8rem;
+    }
+    
+    .service-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .service-card-content p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+}
+

@@ -60,7 +60,10 @@ export function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <Link href="/" className="nav-brand">MK PHOTOGRAPHY</Link>
+        <Link href="/" className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img src="/logo.png" alt="MK Photography Logo" style={{ height: '40px', width: 'auto', filter: theme === 'dark' ? 'invert(1)' : 'none' }} />
+          MK PHOTOGRAPHY
+        </Link>
       </div>
 
       <div className="nav-center desktop-nav">

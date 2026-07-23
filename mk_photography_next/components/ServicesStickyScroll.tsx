@@ -29,10 +29,10 @@ const services = [
 export function ServicesStickyScroll() {
   return (
     <section id="services" className="services-section" style={{ padding: "8rem 5%", background: "var(--bg)", position: "relative" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
+      <div className="services-grid">
         
         {/* Left Sticky Column */}
-        <div style={{ position: "sticky", top: "8rem", paddingRight: "2rem" }}>
+        <div className="services-left-col">
           <h2 className="title-lg" style={{ fontFamily: "var(--serif)", fontSize: "clamp(2.5rem, 4vw, 3.5rem)", marginBottom: "1rem" }}>
             Our Expertise
           </h2>
@@ -50,7 +50,7 @@ export function ServicesStickyScroll() {
         </div>
 
         {/* Right Scrolling Column */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "6rem" }}>
+        <div className="services-right-col">
           {services.map((service, idx) => (
             <motion.div 
               key={idx}
@@ -67,17 +67,17 @@ export function ServicesStickyScroll() {
                 flexDirection: "column"
               }}
             >
-              <div style={{ position: "relative", height: "350px", overflow: "hidden" }}>
+              <div className="service-card-img-container">
                 <motion.img 
                   src={service.image} 
                   alt={service.title} 
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  className="service-card-img"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.4 }}
                 />
               </div>
-              <div style={{ padding: "2.5rem" }}>
-                <h3 style={{ fontFamily: "var(--serif)", fontSize: "2rem", marginBottom: "1rem" }}>{service.title}</h3>
+              <div className="service-card-content">
+                <h3 className="service-title">{service.title}</h3>
                 <p style={{ color: "var(--muted)", lineHeight: 1.6 }}>{service.description}</p>
               </div>
             </motion.div>
@@ -86,18 +86,7 @@ export function ServicesStickyScroll() {
 
       </div>
 
-      {/* Mobile-responsive CSS override */}
-      <style>{`
-        @media (max-width: 900px) {
-          .services-section > div {
-            grid-template-columns: 1fr !important;
-          }
-          .services-section > div > div:first-child {
-            position: static !important;
-            margin-bottom: 3rem;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

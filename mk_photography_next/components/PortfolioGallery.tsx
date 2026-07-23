@@ -1,22 +1,25 @@
 "use client";
 
-import { useState } from 'react';
-
-const categories = ['All', 'Weddings', 'Portraits', 'Events', 'Commercial'];
-
-const images = [
-    { src: '/images/wedding-candid-01.jpg', category: 'Weddings' },
-    { src: '/images/wedding-couple-01.jpg', category: 'Weddings' },
-    { src: '/images/wedding-detail-01.jpg', category: 'Weddings' },
-    { src: '/images/portrait-outdoor-01.jpg', category: 'Portraits' },
-    { src: '/images/portrait-studio-01.jpg', category: 'Portraits' },
-    { src: '/images/event-award-01.jpg', category: 'Events' },
-    { src: '/images/event-gala-01.jpg', category: 'Events' },
-    { src: '/images/commercial-studio-01.jpg', category: 'Commercial' },
-];
+import { useState, useMemo } from 'react';
+import { portfolioData } from './portfolioData';
 
 export function PortfolioGallery({ hideButton = false }: { hideButton?: boolean }) {
     const [filter, setFilter] = useState('All');
+
+    // Extract unique categories from data and capitalize them
+    const categories = useMemo(() => {
+        const cats = new Set(portfolioData.map(img => img.category));
+        const formattedCats = Array.from(cats).map(c => c.charAt(0).toUpperCase() + c.slice(1));
+        return ['All', ...formattedCats];
+    }, []);
+
+    // Format the images to match the new categories and structure
+    const images = useMemo(() => {
+        return portfolioData.map(img => ({
+            src: img.src,
+            category: img.category.charAt(0).toUpperCase() + img.category.slice(1)
+        }));
+    }, []);
 
     const filteredImages = filter === 'All' ? images : images.filter(img => img.category === filter);
 
