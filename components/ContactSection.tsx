@@ -34,7 +34,7 @@ export function ContactSection() {
                         <div style={{ color: 'var(--accent)', marginTop: '0.2rem', fontSize: '1.5rem' }}>✉</div>
                         <div>
                             <h4 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.2rem' }}>Email</h4>
-                            <p className="text-body" style={{ margin: 0, fontSize: '0.95rem' }}>hello@mkphotography.com</p>
+                            <p className="text-body" style={{ margin: 0, fontSize: '0.95rem' }}>mkphotography370@gmail.com</p>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@ export function ContactSection() {
                         <div style={{ color: 'var(--accent)', marginTop: '0.2rem', fontSize: '1.5rem' }}>☏</div>
                         <div>
                             <h4 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.2rem' }}>Phone / WhatsApp</h4>
-                            <p className="text-body" style={{ margin: 0, fontSize: '0.95rem' }}>+234 123 456 7890</p>
+                            <p className="text-body" style={{ margin: 0, fontSize: '0.95rem' }}>+234 913 610 2452 / 0903 525 2179</p>
                         </div>
                     </div>
 
@@ -51,8 +51,8 @@ export function ContactSection() {
                         <div>
                             <h4 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.2rem' }}>Studio Location</h4>
                             <p className="text-body" style={{ margin: 0, fontSize: '0.95rem' }}>
-                                123 Creative Avenue,<br />
-                                Benin City, Edo State,<br />
+                                Ugbowo,<br />
+                                Benin City,<br />
                                 Nigeria
                             </p>
                         </div>
