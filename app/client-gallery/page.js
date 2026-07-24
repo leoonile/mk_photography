@@ -1,3 +1,5 @@
+"use client";
+
 export default function ClientGallery() {
     return (
         <section className="section-padding" style={{ paddingTop: '6rem', paddingBottom: '6rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
