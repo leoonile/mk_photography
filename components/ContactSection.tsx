@@ -7,11 +7,20 @@ export function ContactSection() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Here you would typically send the data to your API route
-        // const formData = new FormData(e.currentTarget);
-        // fetch('/api/contact', { ... })
-        setStatus('Thank you for reaching out! We will get back to you within 24 hours.');
-        (e.target as HTMLFormElement).reset();
+        const form = e.currentTarget;
+        
+        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+        const service = (form.elements.namedItem('service') as HTMLSelectElement).value;
+        const details = (form.elements.namedItem('details') as HTMLTextAreaElement).value;
+
+        const message = `Hello MK Photography! I would like to make an inquiry.\n\n*Name:* ${name}\n*Email:* ${email}\n*Service Required:* ${service}\n*Details:* ${details}`;
+        const whatsappUrl = `https://wa.me/2349035252179?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappUrl, '_blank');
+        
+        setStatus('Redirecting you to WhatsApp...');
+        form.reset();
     };
 
     return (
@@ -63,17 +72,17 @@ export function ContactSection() {
                 <form onSubmit={handleSubmit} style={{ padding: '2.5rem', background: 'var(--input-bg)', borderRadius: '12px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     <div className="input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <label className="input-label" style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>Full Name</label>
-                        <input type="text" className="input-field" required placeholder="John Doe" style={{ padding: '1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px' }} />
+                        <input type="text" name="name" className="input-field" required placeholder="John Doe" style={{ padding: '1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px' }} />
                     </div>
                     
                     <div className="input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <label className="input-label" style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>Email Address</label>
-                        <input type="email" className="input-field" required placeholder="john@example.com" style={{ padding: '1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px' }} />
+                        <input type="email" name="email" className="input-field" required placeholder="john@example.com" style={{ padding: '1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px' }} />
                     </div>
 
                     <div className="input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <label className="input-label" style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>Service Required</label>
-                        <select className="input-field" required defaultValue="" style={{ padding: '1rem', background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px', appearance: 'none' }}>
+                        <select name="service" className="input-field" required defaultValue="" style={{ padding: '1rem', background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px', appearance: 'none' }}>
                             <option value="" disabled>Select a service</option>
                             <option value="wedding" style={{ color: '#000' }}>Wedding Photography</option>
                             <option value="portrait" style={{ color: '#000' }}>Portrait Session</option>
@@ -85,11 +94,11 @@ export function ContactSection() {
 
                     <div className="input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <label className="input-label" style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>Project Details / Date</label>
-                        <textarea className="input-field" required placeholder="Tell us more about your project..." rows={4} style={{ padding: '1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px', resize: 'vertical' }}></textarea>
+                        <textarea name="details" className="input-field" required placeholder="Tell us more about your project..." rows={4} style={{ padding: '1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: '4px', resize: 'vertical' }}></textarea>
                     </div>
 
                     <button type="submit" className="btn-primary" style={{ marginTop: '1rem', padding: '1rem', cursor: 'pointer', border: 'none', background: 'var(--accent)', color: 'var(--bg)', fontWeight: 600, fontSize: '1rem', borderRadius: '4px' }}>
-                        Send Message
+                        Send via WhatsApp
                     </button>
 
                     {status && (
