@@ -1,0 +1,96 @@
+:root {
+  --gutter: 20px;
+  --speed: 30s;
+}
+
+.featured-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+}
+
+.gallery-tracks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter);
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  /* Creates the edge fade effect */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gutter);
+  width: max-content;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Pause animation on hover */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.item {
+  width: 250px;
+  height: 350px; /* Taller aspect ratio for photography */
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--input-bg);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* prevents dragging the image */
+}
+
+/* Left-to-Right Animation (moves from -50% to 0%) */
+@keyframes scroll-ltr {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* Right-to-Left Animation (moves from 0% to -50%) */
+@keyframes scroll-rtl {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.track-ltr {
+  animation: scroll-ltr var(--speed) linear infinite;
+}
+
+.track-rtl {
+  animation: scroll-rtl var(--speed) linear infinite;
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 15px;
+  }
+  .item {
+    width: 200px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --gutter: 10px;
+  }
+  .item {
+    width: 160px;
+    height: 220px;
+  }
+}

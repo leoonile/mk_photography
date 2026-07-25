@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { PricingSection } from "@/components/PricingSection";
 import { StackedCardsSection } from "@/components/PortfolioSection";
-import { ArcGallery } from "@/components/ArcGallery";
+import { FeaturedGallery } from "@/components/FeaturedGallery";
 import { ProcessScramble } from "@/components/ProcessScramble";
 import { ServicesStickyScroll } from "@/components/ServicesStickyScroll";
 import { FAQAccordion } from "@/components/FAQAccordion";
@@ -113,8 +113,8 @@ export default function Home() {
       {/* 3. Our Works (Stacked Cards Portfolio + Grid Gallery) */}
       <StackedCardsSection />
       
-      {/* Interactive Arc Stacked Gallery Section */}
-      <ArcGallery />
+      {/* Featured Gallery Infinite Marquee */}
+      <FeaturedGallery />
 
       {/* 4. Pricing */}
       <PricingSection />

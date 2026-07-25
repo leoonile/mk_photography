@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background: #333; margin: 0; padding: 50px; color: white; }
+  .navbar {
+    background: red; /* so we see exactly how big it is */
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px; /* strict header height */
+    overflow: hidden;
+    background: blue; /* so we see the brand container */
+  }
+  .nav-logo {
+    height: 200px;
+    width: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="nav-brand">
+      <img src="http://localhost:3000/logo.png" class="nav-logo" />
+    </div>
+    <div>Some Menu</div>
+  </div>
+</body>
+</html>
