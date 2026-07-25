@@ -96,35 +96,28 @@ export function Navbar() {
       </div>
 
       <div className="mobile-nav-toggle">
-        <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            {isMobileMenuOpen ? (
-              <>
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </>
-            ) : (
-              <>
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </>
-            )}
+        <button className={`hamburger-text-btn ${isMobileMenuOpen ? "is-open" : ""}`} onClick={toggleMenu} aria-label="Toggle menu">
+          <span className="menu-label-open">MENU</span>
+          <span className="menu-label-close">CLOSE</span>
+          <svg className="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
           </svg>
         </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="mobile-menu">
-          <div className="mobile-menu-header">
-            {renderThemeToggle()}
-          </div>
-          <div className="mobile-menu-links">
-            {navLinks}
-            <Link href="/contact" className="nav-btn-contact mobile-contact-btn" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
-          </div>
+      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? "is-open" : ""}`}>
+        <div className="mobile-menu-header-top">
+          {renderThemeToggle()}
         </div>
-      )}
+        <nav className="mobile-menu-nav-links">
+          {navLinks}
+          <Link href="/contact" className="mobile-contact-link" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+        </nav>
+        <div className="mobile-menu-footer">
+          <span>MK PHOTOGRAPHY</span>
+          <span>BENIN CITY, NIGERIA</span>
+        </div>
+      </div>
     </nav>
   );
 }

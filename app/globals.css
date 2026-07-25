@@ -159,24 +159,121 @@ h3 {
     display: none;
 }
 
-.hamburger {
+.hamburger-text-btn {
     background: none;
     border: none;
     color: var(--fg);
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    z-index: 1002;
+    position: relative;
 }
 
-.mobile-menu {
+.menu-label-close {
     display: none;
+}
+
+.hamburger-text-btn.is-open .menu-label-open {
+    display: none;
+}
+
+.hamburger-text-btn.is-open .menu-label-close {
+    display: inline;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger-text-btn.is-open .menu-icon {
+    transform: rotate(45deg);
+}
+
+/* Tyche Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    
+    /* Animation initial state */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobile-menu-header-top {
+    position: absolute;
+    top: 1.5rem;
+    right: 5rem;
+    z-index: 1002;
+}
+
+.mobile-menu-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: -4rem;
+}
+
+.mobile-menu-nav-links .nav-link,
+.mobile-menu-nav-links .mobile-contact-link {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: #fff;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.mobile-menu-nav-links .nav-link:hover,
+.mobile-menu-nav-links .mobile-contact-link:hover,
+.mobile-menu-nav-links .nav-link.active {
+    color: var(--accent);
+    transform: translateX(5px);
+    border: none;
+    padding: 0;
+}
+
+.mobile-menu-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 }
 
 @media (max-width: 992px) {
     .navbar {
-        padding: 1rem 1.5rem;
+        padding: 1rem 1.5rem 1rem 0;
     }
     
     .desktop-nav {
@@ -187,41 +284,8 @@ h3 {
         display: block;
     }
     
-    .mobile-menu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg);
-        border-bottom: 1px solid var(--border);
-        padding: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        z-index: 99;
-    }
-    
-    .mobile-menu-header {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid var(--border);
-    }
-    
-    .mobile-menu-links {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .mobile-menu-links .nav-link {
-        font-size: 1.1rem;
-    }
-    
-    .mobile-contact-btn {
-        margin-top: 1rem;
-        text-align: center;
+    .hamburger-text-btn.is-open {
+        color: #fff; /* Ensure button text is white when overlay is dark */
     }
 }
 
