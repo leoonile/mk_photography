@@ -9,7 +9,7 @@
     --serif: var(--font-playfair), 'Playfair Display', serif;
 }
 
-html:not([data-theme='dark']) {
+[data-theme='dark'] {
     --bg: #0a0a0a;
     --fg: #ffffff;
     --accent: #d4b27d;
