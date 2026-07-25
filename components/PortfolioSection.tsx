@@ -7,21 +7,33 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const cardData = [
   { 
     id: 1, 
-    title: 'Wedding Stories', 
+    title: 'Weddings', 
     description: 'Timeless moments captured on your special day. From the first look to the final dance, we document the authentic emotions of your celebration.',
-    image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop'
+    image: '/images/portfolio/portfolio-20.jpg'
   },
   { 
     id: 2, 
-    title: 'Portrait Sessions', 
-    description: 'Authentic portraits that highlight your unique personality. Perfect for personal branding, graduations, or just celebrating you.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'
+    title: 'Studio', 
+    description: 'Authentic portraits that highlight your unique personality. Perfect for personal branding, graduations, or just celebrating you in a controlled, pristine environment.',
+    image: '/images/portfolio/portfolio-1.jpg'
   },
   { 
     id: 3, 
-    title: 'Event Coverage', 
+    title: 'Outdoor', 
+    description: 'Beautiful natural lighting and stunning landscapes to frame your memories perfectly. Whether golden hour or dramatic skies, we capture it all.',
+    image: '/images/portfolio/portfolio-10.jpg'
+  },
+  { 
+    id: 4, 
+    title: 'Events', 
     description: 'Professional documentation of your most important events, ensuring every detail and candid moment is preserved forever.',
-    image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2000&auto=format&fit=crop'
+    image: '/images/portfolio/portfolio-12.jpg'
+  },
+  { 
+    id: 5, 
+    title: 'Sports', 
+    description: 'High-energy, dynamic shots that freeze action at the perfect millisecond. Documenting the passion, sweat, and victory of every game.',
+    image: '/images/portfolio/portfolio-15.jpg'
   },
 ];
 
