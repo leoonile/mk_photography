@@ -438,34 +438,88 @@ h3 {
 }
 
 .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
     max-width: 1200px;
     margin: 0 auto;
     text-align: left;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    overflow: visible;
 }
 
 .pricing-card {
-    background: var(--input-bg);
+    background: var(--bg);
     border-radius: 16px;
     padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    transition: transform 0.3s ease, background 0.3s ease;
     border: 1px solid var(--border);
+    
+    /* Horizontal Stack Styles */
+    width: 340px;
+    flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                margin 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.5s ease,
+                border-color 0.5s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
 }
 
-.pricing-card:hover {
-    transform: translateY(-8px);
-    background: var(--input-bg);
+/* Overlap all cards except the first */
+.pricing-card:not(:first-child) {
+    margin-left: -140px; /* Overlap amount */
+}
+
+/* On hover, bring card to front and apply styling */
+.pricing-card:hover, .pricing-card:focus-within {
+    z-index: 50;
+    transform: translateY(-10px);
+    box-shadow: -15px 15px 40px rgba(0,0,0,0.15);
     border-color: var(--fg);
 }
 
+/* Shift all siblings AFTER the hovered card to the right to fully reveal the hovered card */
+.pricing-grid:hover .pricing-card {
+    /* Optional: slightly dim unhovered cards */
+}
+
+.pricing-card:hover ~ .pricing-card,
+.pricing-card:focus-within ~ .pricing-card {
+    transform: translateX(140px);
+}
+
+/* Popular badge style override for stack */
 .pricing-card.popular {
     border: 1px solid var(--accent);
-    background: rgba(212, 178, 125, 0.05);
+    /* Remove translucent background so cards behind don't bleed through */
+}
+
+/* Mobile fallback */
+@media (max-width: 900px) {
+    .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 0;
+    }
+    .pricing-card {
+        width: 100%;
+        max-width: 400px;
+    }
+    .pricing-card:not(:first-child) {
+        margin-left: 0;
+    }
+    .pricing-card:hover ~ .pricing-card,
+    .pricing-card:focus-within ~ .pricing-card {
+        transform: none;
+    }
+    .pricing-card:hover, .pricing-card:focus-within {
+        transform: translateY(-8px);
+    }
 }
 
 .popular-badge {
