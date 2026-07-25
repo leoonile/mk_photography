@@ -108,7 +108,7 @@ h3 {
 
 .nav-brand img,
 .nav-logo {
-    height: 80px;
+    height: 200px;
     width: auto;
 }
 
@@ -1004,7 +1004,7 @@ h3 {
 
 /* ── New Theme Toggle Switch ── */
 .theme-switch-wrapper {
-  transform: scale(0.8);
+  transform: scale(0.56);
   transform-origin: center right;
   display: flex;
   align-items: center;
@@ -1102,8 +1102,8 @@ h3 {
 @media (max-width: 768px) {
 
     /* Navbar */
-    .nav-logo { height: 55px !important; }
-    .navbar { padding: 0.7rem 1.2rem !important; }
+    .nav-logo { height: 105px !important; }
+    .navbar { padding: 0.6rem 1rem !important; }
 
     /* Global section padding — compress vertical space */
     .process-section,
@@ -1165,8 +1165,8 @@ h3 {
 @media (max-width: 480px) {
 
     /* Navbar */
-    .nav-logo { height: 42px !important; }
-    .navbar { padding: 0.6rem 1rem 0.6rem 0 !important; }
+    .nav-logo { height: 105px !important; }
+    .navbar { padding: 0.5rem 1rem !important; }
     .hamburger-text-btn { font-size: 0.75rem; gap: 5px; }
 
     /* Global section padding: tighten even more */
