@@ -104,8 +104,10 @@ h3 {
     letter-spacing: 0.1em;
 }
 
-.nav-brand img {
-    height: 30px;
+.nav-brand img,
+.nav-logo {
+    height: 80px;
+    width: auto;
 }
 
 .nav-center {
@@ -1087,4 +1089,145 @@ h3 {
 
 .checkbox input:checked + .checkbox-inner span {
 	transform: scaleX(0);
+}
+
+/* ═══════════════════════════════════════════════════
+   COMPREHENSIVE RESPONSIVE OVERHAUL
+   Covers all sections at 768px (tablet) + 480px (phone)
+   ═══════════════════════════════════════════════════ */
+
+/* ── 768px: Tablet & Large Phones ── */
+@media (max-width: 768px) {
+
+    /* Navbar */
+    .nav-logo { height: 55px !important; }
+    .navbar { padding: 0.8rem 1.2rem 0.8rem 0 !important; }
+
+    /* Global section padding — compress vertical space */
+    .process-section,
+    .contact-section,
+    .faq-section,
+    .services-section,
+    .pricing-section,
+    .portfolio-stacked-section {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    /* Hero */
+    .hero-content { bottom: 10%; left: 5%; right: 5%; max-width: 100%; }
+    .hero-eyebrow { font-size: 0.7rem; margin-bottom: 1rem; }
+    .title-jop { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 1rem; }
+    .btn-group { gap: 0.75rem; }
+    .hero .btn-primary,
+    .hero .btn-outline {
+        padding: 0.45rem 1.2rem;
+        font-size: 0.65rem;
+    }
+
+    /* Process: auto-fit already handles this via minmax(300px,1fr) 
+       but on narrow phones the gap is excessive */
+    .process-grid { gap: 2.5rem !important; }
+
+    /* Portfolio Stacked Cards */
+    .portfolio-card-wrapper {
+        padding: 1.5rem !important;
+        min-height: 45vh !important;
+        border-radius: 1rem !important;
+    }
+    .portfolio-card-title { font-size: 1.8rem !important; }
+    .portfolio-card-desc { font-size: 0.9rem !important; margin-bottom: 1rem !important; }
+    .portfolio-section-header { padding-top: 2rem !important; padding-bottom: 1rem !important; }
+    .portfolio-header-title { font-size: clamp(1.5rem, 5vw, 2.5rem) !important; }
+
+    /* FAQ & Contact: reduce heading sizes */
+    .faq-section h2,
+    .contact-section h2 { font-size: clamp(1.8rem, 5vw, 2.5rem) !important; }
+    .faq-section p,
+    .contact-section p { font-size: 0.95rem !important; }
+
+    /* Contact grid: force single column on tablet */
+    .contact-section > div > div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Pricing: section heading */
+    .pricing-header h2 { font-size: clamp(1.8rem, 5vw, 2.5rem) !important; }
+
+    /* General typography scale-down */
+    .title-lg { font-size: clamp(1.8rem, 5vw, 2.8rem) !important; }
+}
+
+/* ── 480px: Small phones (iPhone SE, Galaxy A) ── */
+@media (max-width: 480px) {
+
+    /* Navbar */
+    .nav-logo { height: 42px !important; }
+    .navbar { padding: 0.6rem 1rem 0.6rem 0 !important; }
+    .hamburger-text-btn { font-size: 0.75rem; gap: 5px; }
+
+    /* Global section padding: tighten even more */
+    .process-section,
+    .contact-section,
+    .faq-section,
+    .services-section,
+    .pricing-section,
+    .portfolio-stacked-section {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
+    /* Hero: smaller text, more room to breathe */
+    .hero-content { bottom: 8%; }
+    .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.1em; gap: 0.5rem; }
+    .hero-eyebrow::before { width: 20px; }
+    .title-jop { font-size: clamp(1.7rem, 9vw, 2.5rem); }
+    .hero .btn-primary,
+    .hero .btn-outline { padding: 0.4rem 1rem; font-size: 0.6rem; }
+
+    /* Services: revert to single stacked column on very small phones */
+    .services-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+    .services-left-col {
+        position: relative !important;
+        top: auto !important;
+        background: transparent !important;
+        padding-bottom: 0 !important;
+        border: none !important;
+    }
+    .services-left-col .title-lg { font-size: 1.8rem !important; }
+    .services-left-col .text-body { font-size: 0.88rem !important; }
+    .services-right-col { gap: 2rem; }
+    .service-card-img-container { height: 220px !important; }
+
+    /* Portfolio cards */
+    .portfolio-card-wrapper { padding: 1rem !important; min-height: 40vh !important; }
+    .portfolio-card-title { font-size: 1.4rem !important; }
+    .portfolio-card-desc { font-size: 0.82rem !important; max-width: 100% !important; }
+
+    /* Process: single column, tighter gap */
+    .process-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Pricing: narrower cards in scroll */
+    .pricing-card { width: 240px !important; }
+    .pricing-card:not(:first-child) { margin-left: -80px !important; }
+    .pricing-card:hover ~ .pricing-card,
+    .pricing-card:focus-within ~ .pricing-card { transform: translateX(80px) !important; }
+    .card-price { font-size: 2.5rem !important; }
+    .category-btn { font-size: 0.75rem !important; padding: 0.4rem 1rem !important; }
+
+    /* FAQ: smaller padding in accordion items */
+    .faq-section h2 { font-size: clamp(1.5rem, 7vw, 2rem) !important; }
+
+    /* WhatsApp float: shrink slightly */
+    .widget-wa-float { width: 48px; height: 48px; bottom: 1.5rem; right: 1.5rem; }
 }
