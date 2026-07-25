@@ -417,14 +417,15 @@ h3 {
 /* Hero Buttons Specific Sizing (Reduced and uniformly sized) */
 .hero .btn-primary,
 .hero .btn-outline {
-    padding: 0.4rem 0;
-    width: 110px;
-    font-size: 0.35rem;
-    border-radius: 20px;
+    padding: 0.5rem 0;
+    width: 135px;
+    font-size: 0.42rem;
+    border-radius: 25px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    white-space: nowrap;
 }
 
 /* Ensure Hero Buttons always stay white */
