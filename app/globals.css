@@ -1120,6 +1120,11 @@ h3 {
         padding-top: 4rem !important;
         padding-bottom: 4rem !important;
     }
+    
+    /* Pull up the next section to eat the empty sticky viewport space */
+    .portfolio-stacked-section {
+        margin-bottom: -10vh;
+    }
 
     /* Hero */
     .hero-content { bottom: 10%; left: 5%; right: 5%; max-width: 100%; }
@@ -1187,6 +1192,11 @@ h3 {
         padding-bottom: 3rem !important;
         padding-left: 4% !important;
         padding-right: 4% !important;
+    }
+
+    /* Pull up the next section aggressively to eat the empty sticky viewport space */
+    .portfolio-stacked-section {
+        margin-bottom: -15vh;
     }
 
     /* Hero: smaller text, more room to breathe */
