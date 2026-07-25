@@ -716,10 +716,6 @@ h3 {
     background: var(--bg);
 }
 
-.dynamic-height-stack {
-    height: 400vh; /* 4 cards * 100vh on Desktop */
-}
-
 .portfolio-section-header {
     position: sticky;
     top: 0;
@@ -1124,10 +1120,6 @@ h3 {
         padding-top: 4rem !important;
         padding-bottom: 4rem !important;
     }
-    
-    .dynamic-height-stack {
-        height: 300vh !important; /* Must be taller than 4 cards * 60vh (240vh) to avoid overflow collision */
-    }
 
     /* Hero */
     .hero-content { bottom: 10%; left: 5%; right: 5%; max-width: 100%; }
@@ -1195,10 +1187,6 @@ h3 {
         padding-bottom: 3rem !important;
         padding-left: 4% !important;
         padding-right: 4% !important;
-    }
-
-    .dynamic-height-stack {
-        height: 280vh !important; /* Must be at least 240vh to contain the cards */
     }
 
     /* Hero: smaller text, more room to breathe */
