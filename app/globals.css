@@ -414,6 +414,14 @@ h3 {
     color: var(--bg);
 }
 
+/* Hero Buttons Specific Sizing (50% reduction) */
+.hero .btn-primary,
+.hero .btn-outline {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.425rem;
+    border-radius: 25px;
+}
+
 /* Ensure Hero Buttons always stay white */
 .hero .btn-outline {
     color: #fff;
