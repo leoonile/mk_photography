@@ -21,6 +21,14 @@ const SLIDESHOW_IMAGES = [
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
 
+  // Prevent browser from restoring scroll position (which causes auto-scroll to #portfolio)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      history.scrollRestoration = 'manual';
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, []);
+
   useEffect(() => {
     const slideInterval = 4000;
     const timer = setInterval(() => {
