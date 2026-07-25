@@ -75,6 +75,11 @@ h3 {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
     background-color: rgba(128, 128, 128, 0.05); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
