@@ -69,17 +69,12 @@ export function FeaturedGallery() {
                     {/* Top Row: Left-to-Right */}
                     <div className="marquee-wrapper">
                         <ul className="marquee-track track-ltr">
-                            {/* Original Set */}
-                            {topRowImages.map((img) => (
-                                <li key={`orig-top-${img.id}`} className="item">
-                                    <img src={img.cloudinary_url} alt={img.filename} loading="lazy" />
-                                </li>
-                            ))}
-                            {/* Cloned Set for Infinite Loop */}
-                            {topRowImages.map((img) => (
-                                <li key={`clone-top-${img.id}`} className="item">
-                                    <img src={img.cloudinary_url} alt={img.filename} loading="lazy" />
-                                </li>
+                            {[1, 2, 3, 4].map((setIndex) => (
+                                topRowImages.map((img) => (
+                                    <li key={`top-${setIndex}-${img.id}`} className="item">
+                                        <img src={img.cloudinary_url} alt={img.filename} loading="lazy" />
+                                    </li>
+                                ))
                             ))}
                         </ul>
                     </div>
@@ -87,17 +82,12 @@ export function FeaturedGallery() {
                     {/* Bottom Row: Right-to-Left */}
                     <div className="marquee-wrapper">
                         <ul className="marquee-track track-rtl">
-                            {/* Original Set */}
-                            {bottomRowImages.map((img) => (
-                                <li key={`orig-bottom-${img.id}`} className="item">
-                                    <img src={img.cloudinary_url} alt={img.filename} loading="lazy" />
-                                </li>
-                            ))}
-                            {/* Cloned Set for Infinite Loop */}
-                            {bottomRowImages.map((img) => (
-                                <li key={`clone-bottom-${img.id}`} className="item">
-                                    <img src={img.cloudinary_url} alt={img.filename} loading="lazy" />
-                                </li>
+                            {[1, 2, 3, 4].map((setIndex) => (
+                                bottomRowImages.map((img) => (
+                                    <li key={`bottom-${setIndex}-${img.id}`} className="item">
+                                        <img src={img.cloudinary_url} alt={img.filename} loading="lazy" />
+                                    </li>
+                                ))
                             ))}
                         </ul>
                     </div>

@@ -1,6 +1,6 @@
 :root {
   --gutter: 20px;
-  --speed: 30s;
+  --speed: 60s;
 }
 
 .featured-gallery {
@@ -54,16 +54,16 @@
   pointer-events: none; /* prevents dragging the image */
 }
 
-/* Left-to-Right Animation (moves from -50% to 0%) */
+/* Left-to-Right Animation (moves from -25% to 0%) */
 @keyframes scroll-ltr {
-  0% { transform: translateX(-50%); }
+  0% { transform: translateX(-25%); }
   100% { transform: translateX(0%); }
 }
 
-/* Right-to-Left Animation (moves from 0% to -50%) */
+/* Right-to-Left Animation (moves from 0% to -25%) */
 @keyframes scroll-rtl {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-25%); }
 }
 
 .track-ltr {
