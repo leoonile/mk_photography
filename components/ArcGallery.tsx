@@ -33,11 +33,11 @@ export function ArcGallery() {
                 } else {
                     allImages = staticImages;
                 }
-                // Slice exactly 7 images for the Arc effect
-                setImages(allImages.slice(0, 7));
+                // Slice exactly 20 images for the Arc effect
+                setImages(allImages.slice(0, 20));
             } catch (err: any) {
                 console.error(err);
-                setImages(staticImages.slice(0, 7));
+                setImages(staticImages.slice(0, 20));
             } finally {
                 setIsLoading(false);
             }
@@ -61,14 +61,24 @@ export function ArcGallery() {
                 </div>
             ) : (
                 <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', padding: '4rem 0 6rem' }}>
-                    <div className="arc-wrapper">
+                    <div className="arc-wrapper" style={{ '--cards': images.length } as React.CSSProperties}>
                         {images.map((img, idx) => {
                             const thumbUrl = img.cloudinary_url.includes('/upload/') 
                                 ? img.cloudinary_url.replace('/upload/', '/upload/w_800,c_fill,q_auto/')
                                 : img.cloudinary_url;
+                            
+                            // Calculate z-index to peak in the middle of the stack
+                            const middle = Math.floor(images.length / 2);
+                            const zIndex = idx <= middle ? idx : images.length - idx;
                                 
                             return (
-                                <div key={img.id || idx}>
+                                <div 
+                                    key={img.id || idx}
+                                    style={{ 
+                                        '--card-i': idx + 1,
+                                        zIndex: zIndex
+                                    } as React.CSSProperties}
+                                >
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img 
                                         src={thumbUrl} 

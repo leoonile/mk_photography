@@ -5,31 +5,18 @@
   --card-border-radius: 10px;
   --card-width: 25vmin;
   --radius: 60vmin; 
-  --cards: 7; /* We will strictly fetch 7 images */
-  --arc-size: 0.25;          /* essentially the distance between cards */
+  /* --cards will be injected by React */
+  --arc-size: 0.35;          /* Increase arc size slightly for more cards */
   --arc-center: 0.75;        /* top */
   --arc-start: calc(var(--arc-center) - var(--arc-size) / 2);
   --arc-shift: 0;
-  --arc-shift-delta: 0.01;
+  --arc-shift-delta: 0.015; /* slightly larger shift for visibility */
 
   position: relative;
   width: var(--card-width);
   aspect-ratio: 4/6;
   margin: 0 auto;
 }
-
-.arc-wrapper > div {
-  /* Provide an explicit index for all 7 items because some browsers don't support sibling-index() yet */
-  --card-i: 1;
-}
-
-.arc-wrapper > div:nth-child(1) { --card-i: 1; z-index: 0; }
-.arc-wrapper > div:nth-child(2) { --card-i: 2; z-index: 1; }
-.arc-wrapper > div:nth-child(3) { --card-i: 3; z-index: 3; }
-.arc-wrapper > div:nth-child(4) { --card-i: 4; z-index: 4; }
-.arc-wrapper > div:nth-child(5) { --card-i: 5; z-index: 3; }
-.arc-wrapper > div:nth-child(6) { --card-i: 6; z-index: 1; }
-.arc-wrapper > div:nth-child(7) { --card-i: 7; z-index: 0; }
 
 .arc-wrapper > div {
   --arc-step: calc(var(--arc-size) / (var(--cards) - 1));
@@ -59,18 +46,18 @@
 /* Hover effects */
 .arc-wrapper > div:hover {
   offset-anchor: 50% 10%;
-  z-index: 10 !important;
+  z-index: 100 !important;
 }
 
-/* Siblings shift right */
-.arc-wrapper > div:hover + div { --arc-shift: calc(var(--arc-shift-delta) * 3); }
-.arc-wrapper > div:hover + div + div { --arc-shift: calc(var(--arc-shift-delta) * 2); }
-.arc-wrapper > div:hover + div + div + div { --arc-shift: calc(var(--arc-shift-delta) * 1); }
+/* All siblings AFTER the hovered card shift right */
+.arc-wrapper > div:hover ~ div {
+  --arc-shift: calc(var(--arc-shift-delta) * 3);
+}
 
-/* Preceding siblings shift left */
-.arc-wrapper > div:has(+ div:hover) { --arc-shift: calc(var(--arc-shift-delta) * -3); }
-.arc-wrapper > div:has(+ div + div:hover) { --arc-shift: calc(var(--arc-shift-delta) * -2); }
-.arc-wrapper > div:has(+ div + div + div:hover) { --arc-shift: calc(var(--arc-shift-delta) * -1); }
+/* All siblings BEFORE the hovered card shift left */
+.arc-wrapper:has(> div:hover) > div:not(:hover):not(:hover ~ div) {
+  --arc-shift: calc(var(--arc-shift-delta) * -3);
+}
 
 
 .arc-wrapper > div > img {
