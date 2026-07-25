@@ -396,20 +396,32 @@ h3 {
 
 .btn-outline {
     background: transparent;
-    color: #fff;
+    color: var(--fg);
     padding: 1rem 2.5rem;
     border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--fg);
     transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
+    background: var(--fg);
+    color: var(--bg);
+}
+
+/* Ensure Hero Buttons always stay white */
+.hero .btn-outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero .btn-outline:hover {
     border-color: #fff;
     background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 /* ── Floating Contact Widgets ── */
@@ -854,9 +866,13 @@ h3 {
     }
     
     .services-left-col {
-        position: relative;
+        position: sticky;
         padding-right: 0;
-        top: 0;
+        top: 6rem;
+        z-index: 10;
+        background: var(--bg);
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
     }
     
     .services-left-col .title-lg {
