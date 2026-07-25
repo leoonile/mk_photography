@@ -977,13 +977,7 @@ h3 {
 }
 
 /* ── 3D Theme Toggle Switch (Scaled) ── */
-.theme-switch-wrapper {
-    font-size: 4px; /* Magic scaling factor to fit header */
-    --hue: 223;
-	--hue2: 133;
-	--trans-dur: 0.3s;
-	--trans-timing: cubic-bezier(0.83,0,0.17,1);
-}
+
 
 .switch,
 .switch__input {
@@ -1173,61 +1167,21 @@ h3 {
 	transform: skewX(0) scaleY(0.85);
 }
 
-/* Dark theme overrides based on next-themes attribute html:not([data-theme='dark']) */
-html:not([data-theme='dark']) .theme-switch-wrapper .switch {
-	background-color: hsl(var(--hue),10%,40%);
-	box-shadow:
-		0 4.375em 2em hsl(var(--hue),10%,30%) inset,
-		0 0.125em 0 hsl(var(--hue),10%,40%) inset,
-		0 0 0.375em hsla(var(--hue),10%,10%,0.5);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever {
-	background-color: hsla(var(--hue),10%,30%);
-	box-shadow:
-		0 0 0.25em hsl(var(--hue),10%,10%) inset,
-		0.75em 0 0.5em hsl(var(--hue),10%,40%) inset;
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever-half-top {
-	background-color: hsl(var(--hue),10%,35%);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever-half-top:before {
-	box-shadow:
-		0 0 0 0.125em hsl(var(--hue),10%,25%) inset,
-		0 0.25em 0 hsl(var(--hue),10%,40%) inset,
-		0 0.125em 0 hsl(var(--hue),10%,40%);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever-half-bottom {
-	background-color: hsl(var(--hue),10%,40%);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever-half-bottom:before {
-	background-color: hsl(var(--hue2),10%,25%);
-	box-shadow:
-		0 0.125em 0 hsl(var(--hue2),10%,20%) inset,
-		0 -0.0625em 0 hsl(var(--hue),10%,40%) inset,
-		0 0 0.5em hsla(var(--hue2),90%,45%,0);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever-shadow:before,
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__lever-shadow:after {
-	background-color: hsla(var(--hue),10%,10%,0.25);
+/* Pure Black/White matching using filters */
+.theme-switch-wrapper {
+    /* Magic scaling factor to fit header */
+    font-size: 4px; 
+    --hue: 223;
+	--hue2: 133;
+	--trans-dur: 0.3s;
+	--trans-timing: cubic-bezier(0.83,0,0.17,1);
+    
+    /* In Dark Mode (default state of the site), we want the switch to be purely WHITE to match the text */
+    filter: grayscale(1) brightness(1.5);
+    transition: filter 0.3s ease;
 }
 
-/* `:checked` state in dark mode */
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__input:checked ~ .switch__lever .switch__lever-half-top {
-	background-color: hsl(var(--hue),10%,25%);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__input:checked ~ .switch__lever .switch__lever-half-top:before {
-	box-shadow:
-		0 0 0 0.125em hsl(var(--hue),10%,15%) inset,
-		0 0.25em 0 hsl(var(--hue),10%,30%) inset,
-		0 0.125em 0 hsl(var(--hue),10%,30%);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__input:checked ~ .switch__lever .switch__lever-half-bottom {
-	background-color: hsl(var(--hue),10%,35%);
-}
-html:not([data-theme='dark']) .theme-switch-wrapper .switch__input:checked ~ .switch__lever .switch__lever-half-bottom:before {
-	background-color: hsl(var(--hue2),90%,45%);
-	box-shadow:
-		0 0.125em 0 hsl(var(--hue2),90%,20%) inset,
-		0 -0.0625em 0 hsl(var(--hue),10%,40%) inset,
-		0 0 0.5em hsla(var(--hue2),90%,45%,1);
+/* In Light Mode, the text is BLACK, so we want the switch to be deeply BLACK */
+html:not([data-theme='dark']) .theme-switch-wrapper {
+    filter: grayscale(1) contrast(1.5) brightness(0.15);
 }
