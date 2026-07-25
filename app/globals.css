@@ -26,6 +26,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -66,17 +67,18 @@ h3 {
 
 /* ── Navigation ── */
 .navbar {
-    position: fixed; /* Fixed so it overlays the scroll with glass effect */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    padding: 1.5rem 3rem 1.5rem 0;
+    padding: 0.75rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
+    width: 100%;
 }
 
 .navbar.scrolled {
@@ -275,7 +277,7 @@ h3 {
 
 @media (max-width: 992px) {
     .navbar {
-        padding: 1rem 1.5rem 1rem 0 !important;
+        padding: 0.75rem 1.5rem !important;
     }
     
     .desktop-nav {
@@ -1101,7 +1103,7 @@ h3 {
 
     /* Navbar */
     .nav-logo { height: 55px !important; }
-    .navbar { padding: 0.8rem 1.2rem 0.8rem 0 !important; }
+    .navbar { padding: 0.7rem 1.2rem !important; }
 
     /* Global section padding — compress vertical space */
     .process-section,
