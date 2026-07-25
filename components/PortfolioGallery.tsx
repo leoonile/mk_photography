@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
+import { portfolioData } from './portfolioData';
 
 interface PortfolioImage {
     id: string;
@@ -17,19 +18,29 @@ export function PortfolioGallery({ hideButton = false }: { hideButton?: boolean 
 
     useEffect(() => {
         const fetchPortfolio = async () => {
+            // Convert static images to match the dynamic structure
+            const staticImages = portfolioData.map((img, idx) => ({
+                id: `static-${idx}`,
+                cloudinary_url: img.src,
+                portfolio_category: img.category,
+                filename: img.src.split('/').pop() || 'static-image'
+            }));
+
             try {
                 const res = await fetch('/api/admin?action=portfolio-images');
                 if (!res.ok) throw new Error('Failed to fetch portfolio images');
                 const data = await res.json();
                 
                 if (data.images) {
-                    setImages(data.images);
+                    // Combine dynamic (first) and static (second)
+                    setImages([...data.images, ...staticImages]);
                 } else {
-                    setImages([]);
+                    setImages(staticImages);
                 }
             } catch (err: any) {
                 console.error(err);
-                setError('Unable to load portfolio gallery.');
+                // If fetching fails, at least show the static ones
+                setImages(staticImages);
             } finally {
                 setIsLoading(false);
             }
@@ -102,8 +113,11 @@ export function PortfolioGallery({ hideButton = false }: { hideButton?: boolean 
                         marginBottom: hideButton ? '0' : '4rem'
                     }}>
                         {filteredImages.map((img, idx) => {
-                            // Automatically fetch a medium-res optimized crop from Cloudinary for the grid
-                            const thumbUrl = img.cloudinary_url.replace('/upload/', '/upload/w_600,c_fill,q_auto/');
+                            // Automatically fetch a medium-res optimized crop from Cloudinary for dynamic images
+                            // Static images (local) are kept as is
+                            const thumbUrl = img.cloudinary_url.includes('/upload/') 
+                                ? img.cloudinary_url.replace('/upload/', '/upload/w_600,c_fill,q_auto/')
+                                : img.cloudinary_url;
                             
                             return (
                                 <div key={img.id || idx} style={{ overflow: 'hidden', borderRadius: '8px', position: 'relative', aspectRatio: '4/5', background: 'var(--input-bg)' }}>
