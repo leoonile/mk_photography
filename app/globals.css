@@ -860,23 +860,38 @@ h3 {
 
 @media (max-width: 768px) {
     .services-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 1rem;
     }
     
     .services-left-col {
         position: sticky;
         padding-right: 0;
-        top: 6rem;
+        top: 5rem;
         z-index: 10;
-        background: var(--bg);
-        padding-bottom: 1rem;
-        border-bottom: 1px solid var(--border);
+        background: transparent;
+        border: none;
+    }
+    
+    .services-right-col {
+        gap: 3rem;
+    }
+    
+    .service-card-img-container {
+        height: 250px;
+    }
+    
+    .service-card-content {
+        padding: 1rem;
+    }
+    
+    .service-title {
+        font-size: 1.2rem;
     }
     
     .services-left-col .title-lg {
-        font-size: 1.2rem !important;
+        font-size: 1.5rem !important;
     }
     
     .services-left-col .text-body {
