@@ -51,7 +51,7 @@ export function FeaturedGallery() {
     const bottomRowImages = images.slice(half);
 
     return (
-        <section className="featured-gallery bg-bg relative z-10 py-24 overflow-hidden">
+        <section className="featured-gallery bg-bg relative z-10 overflow-hidden">
             <div className="section-header text-center mb-12">
                 <h2 className="title-lg font-serif text-[clamp(2.5rem,4vw,3.5rem)] mb-4">Featured Gallery</h2>
                 <p className="text-body large mx-auto text-muted max-w-[600px] leading-relaxed mb-8">
