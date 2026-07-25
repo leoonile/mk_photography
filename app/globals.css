@@ -99,16 +99,19 @@ h3 {
 }
 
 .nav-brand {
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* Desktop strict height */
+    overflow: hidden;
 }
 
 .nav-brand img,
 .nav-logo {
-    height: 200px;
+    height: 200px; /* Kept huge to scale up the internal text */
     width: auto;
-    margin-top: -40px; /* Counter built-in image whitespace */
-    margin-bottom: -40px;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .nav-center {
@@ -1102,11 +1105,8 @@ h3 {
 @media (max-width: 768px) {
 
     /* Navbar */
-    .nav-logo { 
-        height: 105px !important; 
-        margin-top: -20px !important;
-        margin-bottom: -20px !important;
-    }
+    .nav-brand { height: 28px !important; }
+    .nav-logo { height: 105px !important; margin: 0 !important; }
     .navbar { padding: 0 1rem !important; }
 
     /* Global section padding — compress vertical space */
@@ -1169,11 +1169,8 @@ h3 {
 @media (max-width: 480px) {
 
     /* Navbar */
-    .nav-logo { 
-        height: 105px !important; 
-        margin-top: -20px !important;
-        margin-bottom: -20px !important;
-    }
+    .nav-brand { height: 24px !important; }
+    .nav-logo { height: 105px !important; margin: 0 !important; }
     .navbar { padding: 0 0.8rem !important; }
     .hamburger-text-btn { font-size: 0.75rem; gap: 5px; }
 
