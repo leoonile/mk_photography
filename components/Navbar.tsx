@@ -100,7 +100,7 @@ export function Navbar() {
 
       <div className={`mobile-menu-overlay ${isMobileMenuOpen ? "is-open" : ""}`}>
         <div className="mobile-menu-header-top">
-          {/* Removed duplicate toggle */}
+          {renderThemeToggle('overlay')}
         </div>
         <nav className="mobile-menu-nav-links">
           {navLinks}
