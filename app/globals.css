@@ -1126,7 +1126,7 @@ h3 {
     }
     
     .dynamic-height-stack {
-        height: 200vh !important; /* Cut scroll duration in half */
+        height: 300vh !important; /* Must be taller than 4 cards * 60vh (240vh) to avoid overflow collision */
     }
 
     /* Hero */
@@ -1198,7 +1198,7 @@ h3 {
     }
 
     .dynamic-height-stack {
-        height: 150vh !important; /* Drastically reduce scroll duration so it's only a quick swipe */
+        height: 280vh !important; /* Must be at least 240vh to contain the cards */
     }
 
     /* Hero: smaller text, more room to breathe */
