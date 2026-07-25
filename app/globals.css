@@ -66,7 +66,7 @@ h3 {
 
 /* ── Navigation ── */
 .navbar {
-    position: absolute;
+    position: fixed; /* Fixed so it overlays the scroll with glass effect */
     top: 0;
     left: 0;
     right: 0;
@@ -74,8 +74,12 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
-    background: transparent;
+    z-index: 1000;
+    background-color: rgba(128, 128, 128, 0.05); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 -1px 2px 1px rgba(255, 255, 255, 0.05), 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .nav-left {
@@ -768,3 +772,48 @@ h3 {
     }
 }
 
+/* ── Liquid Glass Global Button Overrides (Tyche Solicitors Style adapted to MK Gold) ── */
+.btn-primary, 
+.btn-outline, 
+.nav-btn-contact, 
+.category-btn, 
+.card-btn,
+.card-btn-outline,
+.card-btn-primary,
+.widget-btn {
+    background: rgba(212, 178, 125, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: none !important;
+    box-shadow: 
+        0 0 0 1px rgba(212, 178, 125, 0.5), 
+        0 0 12px rgba(212, 178, 125, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.1) !important;
+    color: var(--fg) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Ensure icons in widget buttons remain visible */
+.widget-btn {
+    color: var(--fg) !important;
+}
+
+/* Hover state for all buttons with enhanced gold glow */
+.btn-primary:hover, 
+.btn-outline:hover, 
+.nav-btn-contact:hover, 
+.category-btn:hover, 
+.card-btn:hover,
+.card-btn-outline:hover,
+.card-btn-primary:hover,
+.widget-btn:hover {
+    background: rgba(212, 178, 125, 0.25) !important;
+    box-shadow: 
+        0 0 0 1.5px rgba(212, 178, 125, 0.8), 
+        0 0 20px rgba(212, 178, 125, 0.4),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.4),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px);
+    color: var(--fg) !important;
+}
