@@ -102,7 +102,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px; /* Desktop strict height */
+    height: 70px; /* Desktop strict height increased to prevent clipping */
     overflow: hidden;
 }
 
@@ -1105,7 +1105,7 @@ h3 {
 @media (max-width: 768px) {
 
     /* Navbar */
-    .nav-brand { height: 28px !important; }
+    .nav-brand { height: 45px !important; }
     .nav-logo { height: 105px !important; margin: 0 !important; }
     .navbar { padding: 0 1rem !important; }
 
@@ -1170,7 +1170,7 @@ h3 {
 @media (max-width: 480px) {
 
     /* Navbar */
-    .nav-brand { height: 24px !important; }
+    .nav-brand { height: 38px !important; }
     .nav-logo { height: 105px !important; margin: 0 !important; }
     .navbar { padding: 0 0.8rem !important; }
     .hamburger-text-btn { font-size: 0.75rem; gap: 5px; }
