@@ -1003,9 +1003,12 @@ h3 {
 /* ── New Theme Toggle Switch ── */
 .theme-switch-wrapper {
   transform: scale(0.56);
-  transform-origin: center right;
+  transform-origin: center;
   display: flex;
   align-items: center;
+  /* Collapse phantom layout space from CSS transform (36px - 20px) / 2 = 8px */
+  margin-top: -8px;
+  margin-bottom: -8px;
 }
 
 .checkbox {
