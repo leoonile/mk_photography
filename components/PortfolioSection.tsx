@@ -117,9 +117,7 @@ export function StackedCardsSection() {
     <section
       id="portfolio"
       ref={containerRef}
-      className="portfolio-stacked-section bg-bg"
-      // Crucial: Create enough scrollable height based on card count
-      style={{ height: `${cardData.length * 100}vh` }}
+      className="portfolio-stacked-section bg-bg dynamic-height-stack"
     >
       {/* Section Header that stays sticky behind the cards */}
       <div className="portfolio-section-header">

@@ -716,6 +716,10 @@ h3 {
     background: var(--bg);
 }
 
+.dynamic-height-stack {
+    height: 400vh; /* 4 cards * 100vh on Desktop */
+}
+
 .portfolio-section-header {
     position: sticky;
     top: 0;
@@ -1121,9 +1125,8 @@ h3 {
         padding-bottom: 4rem !important;
     }
     
-    /* Pull up the next section to eat the empty sticky viewport space */
-    .portfolio-stacked-section {
-        margin-bottom: -10vh;
+    .dynamic-height-stack {
+        height: 200vh !important; /* Cut scroll duration in half */
     }
 
     /* Hero */
@@ -1194,9 +1197,8 @@ h3 {
         padding-right: 4% !important;
     }
 
-    /* Pull up the next section aggressively to eat the empty sticky viewport space */
-    .portfolio-stacked-section {
-        margin-bottom: -15vh;
+    .dynamic-height-stack {
+        height: 150vh !important; /* Drastically reduce scroll duration so it's only a quick swipe */
     }
 
     /* Hero: smaller text, more room to breathe */
