@@ -773,8 +773,6 @@ h3 {
 }
 
 /* ── Liquid Glass Global Button Overrides (Tyche Solicitors Style adapted to MK Gold) ── */
-.btn-primary, 
-.btn-outline, 
 .category-btn, 
 .card-btn,
 .card-btn-outline,
@@ -799,8 +797,6 @@ h3 {
 }
 
 /* Hover state for all buttons with enhanced gold glow */
-.btn-primary:hover, 
-.btn-outline:hover, 
 .category-btn:hover, 
 .card-btn:hover,
 .card-btn-outline:hover,
@@ -814,4 +810,18 @@ h3 {
         inset -1px -1px 2px rgba(0, 0, 0, 0.1) !important;
     transform: translateY(-2px);
     color: var(--fg) !important;
+}
+
+/* Reduce button size slightly on mobile */
+@media (max-width: 768px) {
+    .btn-primary, 
+    .btn-outline,
+    .nav-btn-contact,
+    .category-btn, 
+    .card-btn,
+    .card-btn-outline,
+    .card-btn-primary {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.8rem !important;
+    }
 }
