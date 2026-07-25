@@ -71,7 +71,7 @@ h3 {
     top: 0;
     left: 0;
     right: 0;
-    padding: 0.75rem 2rem;
+    padding: 0.3rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -276,9 +276,7 @@ h3 {
 }
 
 @media (max-width: 992px) {
-    .navbar {
-        padding: 0.75rem 1.5rem !important;
-    }
+    .navbar { padding: 0.3rem 1.2rem !important; }
     
     .desktop-nav {
         display: none;
@@ -1103,7 +1101,7 @@ h3 {
 
     /* Navbar */
     .nav-logo { height: 105px !important; }
-    .navbar { padding: 0.6rem 1rem !important; }
+    .navbar { padding: 0.25rem 1rem !important; }
 
     /* Global section padding — compress vertical space */
     .process-section,
@@ -1166,7 +1164,7 @@ h3 {
 
     /* Navbar */
     .nav-logo { height: 105px !important; }
-    .navbar { padding: 0.5rem 1rem !important; }
+    .navbar { padding: 0.2rem 0.8rem !important; }
     .hamburger-text-btn { font-size: 0.75rem; gap: 5px; }
 
     /* Global section padding: tighten even more */
