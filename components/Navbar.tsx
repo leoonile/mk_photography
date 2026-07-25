@@ -95,7 +95,26 @@ export function Navbar() {
         <Link href="/contact" className="nav-btn-contact">Contact</Link>
       </div>
 
-      <div className="mobile-nav-toggle">
+      <div className="mobile-nav-toggle" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div className="theme-switch-wrapper" title="Toggle theme">
+          <label className="switch">
+            <input 
+              className="switch__input" 
+              type="checkbox" 
+              role="switch" 
+              name="theme" 
+              checked={mounted && theme === 'dark'}
+              onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            />
+            <span className="switch__lever-shadow"></span>
+            <span className="switch__lever">
+              <span className="switch__lever-sides"></span>
+              <span className="switch__lever-half-top"></span>
+              <span className="switch__lever-half-bottom"></span>
+            </span>
+            <span className="switch__label">Theme</span>
+          </label>
+        </div>
         <button className={`hamburger-text-btn ${isMobileMenuOpen ? "is-open" : ""}`} onClick={toggleMenu} aria-label="Toggle menu">
           <span className="menu-label-open">MENU</span>
           <span className="menu-label-close">CLOSE</span>
@@ -107,7 +126,7 @@ export function Navbar() {
 
       <div className={`mobile-menu-overlay ${isMobileMenuOpen ? "is-open" : ""}`}>
         <div className="mobile-menu-header-top">
-          {renderThemeToggle()}
+          {/* Removed duplicate toggle */}
         </div>
         <nav className="mobile-menu-nav-links">
           {navLinks}
