@@ -281,7 +281,9 @@ h3 {
     }
     
     .mobile-nav-toggle {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
     
     .hamburger-text-btn.is-open {

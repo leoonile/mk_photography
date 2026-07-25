@@ -87,7 +87,7 @@ export function Navbar() {
         <Link href="/contact" className="nav-btn-contact">Contact</Link>
       </div>
 
-      <div className="mobile-nav-toggle" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className="mobile-nav-toggle">
         {renderThemeToggle('mobile')}
         <button className={`hamburger-text-btn ${isMobileMenuOpen ? "is-open" : ""}`} onClick={toggleMenu} aria-label="Toggle menu">
           <span className="menu-label-open">MENU</span>
