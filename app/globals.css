@@ -273,7 +273,7 @@ h3 {
 
 @media (max-width: 992px) {
     .navbar {
-        padding: 1rem 1.5rem 1rem 0;
+        padding: 1rem 1.5rem 1rem 0 !important;
     }
     
     .desktop-nav {
@@ -848,13 +848,15 @@ h3 {
 
 @media (max-width: 768px) {
     .services-grid {
-        gap: 1rem;
-        grid-template-columns: 1fr 1.5fr;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
     }
     
     .services-left-col {
+        position: relative;
         padding-right: 0;
-        top: 5rem;
+        top: 0;
     }
     
     .services-left-col .title-lg {
@@ -885,7 +887,8 @@ h3 {
     }
 
     .service-card-img-container {
-        height: 150px;
+        height: 250px;
+        width: 100%;
     }
     
     .service-card-content {
