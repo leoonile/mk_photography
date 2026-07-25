@@ -775,7 +775,6 @@ h3 {
 /* ── Liquid Glass Global Button Overrides (Tyche Solicitors Style adapted to MK Gold) ── */
 .btn-primary, 
 .btn-outline, 
-.nav-btn-contact, 
 .category-btn, 
 .card-btn,
 .card-btn-outline,
@@ -802,7 +801,6 @@ h3 {
 /* Hover state for all buttons with enhanced gold glow */
 .btn-primary:hover, 
 .btn-outline:hover, 
-.nav-btn-contact:hover, 
 .category-btn:hover, 
 .card-btn:hover,
 .card-btn-outline:hover,

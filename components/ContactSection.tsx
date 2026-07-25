@@ -98,7 +98,7 @@ export function ContactSection() {
                     </div>
 
                     <button type="submit" className="btn-primary" style={{ marginTop: '1rem', padding: '1rem', cursor: 'pointer', border: 'none', background: 'var(--accent)', color: 'var(--bg)', fontWeight: 600, fontSize: '1rem', borderRadius: '4px' }}>
-                        Send via WhatsApp
+                        Send
                     </button>
 
                     {status && (
