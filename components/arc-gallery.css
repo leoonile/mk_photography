@@ -1,0 +1,94 @@
+.arc-wrapper {
+  --card-trans-duration: 1000ms;
+  --card-trans-easing: linear(0, 0.01 0.8%, 0.038 1.6%, 0.154 3.4%, 0.781 9.7%, 1.01 12.5%, 1.089 13.8%, 1.153 15.2%, 1.195 16.6%, 1.219 18%, 1.224 19.7%, 1.208 21.6%, 1.172 23.6%, 1.057 28.6%, 1.007 31.2%, 0.969 34.1%, 0.951 37.1%, 0.953 40.9%, 0.998 50.4%, 1.011 56%, 0.998 74.7%, 1);
+  
+  --card-border-radius: 10px;
+  --card-width: 25vmin;
+  --radius: 60vmin; 
+  --cards: 7; /* We will strictly fetch 7 images */
+  --arc-size: 0.25;          /* essentially the distance between cards */
+  --arc-center: 0.75;        /* top */
+  --arc-start: calc(var(--arc-center) - var(--arc-size) / 2);
+  --arc-shift: 0;
+  --arc-shift-delta: 0.01;
+
+  position: relative;
+  width: var(--card-width);
+  aspect-ratio: 4/6;
+  margin: 0 auto;
+}
+
+.arc-wrapper > div {
+  /* Provide an explicit index for all 7 items because some browsers don't support sibling-index() yet */
+  --card-i: 1;
+}
+
+.arc-wrapper > div:nth-child(1) { --card-i: 1; z-index: 0; }
+.arc-wrapper > div:nth-child(2) { --card-i: 2; z-index: 1; }
+.arc-wrapper > div:nth-child(3) { --card-i: 3; z-index: 3; }
+.arc-wrapper > div:nth-child(4) { --card-i: 4; z-index: 4; }
+.arc-wrapper > div:nth-child(5) { --card-i: 5; z-index: 3; }
+.arc-wrapper > div:nth-child(6) { --card-i: 6; z-index: 1; }
+.arc-wrapper > div:nth-child(7) { --card-i: 7; z-index: 0; }
+
+.arc-wrapper > div {
+  --arc-step: calc(var(--arc-size) / (var(--cards) - 1));
+    
+  position: absolute;
+  width: var(--card-width);
+  aspect-ratio: 4/6;
+  background: white;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+  /* The path logic */
+  offset-path: circle(var(--radius) at 50% 100%);
+  offset-distance: calc(
+    (var(--arc-start)
+     + (var(--card-i) - 1) * var(--arc-step)
+     + var(--arc-shift)
+    ) * 100%
+  );
+	 
+  offset-rotate: auto;
+  offset-anchor: 50% 0%;
+  transition: all var(--card-trans-duration) var(--card-trans-easing);
+  cursor: pointer;
+}
+
+/* Hover effects */
+.arc-wrapper > div:hover {
+  offset-anchor: 50% 10%;
+  z-index: 10 !important;
+}
+
+/* Siblings shift right */
+.arc-wrapper > div:hover + div { --arc-shift: calc(var(--arc-shift-delta) * 3); }
+.arc-wrapper > div:hover + div + div { --arc-shift: calc(var(--arc-shift-delta) * 2); }
+.arc-wrapper > div:hover + div + div + div { --arc-shift: calc(var(--arc-shift-delta) * 1); }
+
+/* Preceding siblings shift left */
+.arc-wrapper > div:has(+ div:hover) { --arc-shift: calc(var(--arc-shift-delta) * -3); }
+.arc-wrapper > div:has(+ div + div:hover) { --arc-shift: calc(var(--arc-shift-delta) * -2); }
+.arc-wrapper > div:has(+ div + div + div:hover) { --arc-shift: calc(var(--arc-shift-delta) * -1); }
+
+
+.arc-wrapper > div > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.arc-gallery-section {
+  padding: 6rem 5%;
+  min-height: 80vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Important so cards don't create scrollbars */
+}

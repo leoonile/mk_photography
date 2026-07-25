@@ -7,20 +7,20 @@ export function ContactSection() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const form = e.currentTarget;
+        const formData = new FormData(e.currentTarget);
         
-        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-        const service = (form.elements.namedItem('service') as HTMLSelectElement).value;
-        const details = (form.elements.namedItem('details') as HTMLTextAreaElement).value;
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const service = formData.get('service');
+        const details = formData.get('details');
 
         const message = `Hello MK Photography! I would like to make an inquiry.\n\n*Name:* ${name}\n*Email:* ${email}\n*Service Required:* ${service}\n*Details:* ${details}`;
         const whatsappUrl = `https://wa.me/2349035252179?text=${encodeURIComponent(message)}`;
         
-        window.open(whatsappUrl, '_blank');
+        window.location.href = whatsappUrl;
         
         setStatus('Redirecting you to WhatsApp...');
-        form.reset();
+        e.currentTarget.reset();
     };
 
     return (
