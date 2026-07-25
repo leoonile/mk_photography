@@ -501,24 +501,26 @@ h3 {
 /* Mobile fallback */
 @media (max-width: 900px) {
     .pricing-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding: 0;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 3rem; /* Allow shadow room */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .pricing-grid::-webkit-scrollbar {
+        display: none;
     }
     .pricing-card {
-        width: 100%;
-        max-width: 400px;
+        width: 280px;
     }
     .pricing-card:not(:first-child) {
-        margin-left: 0;
+        margin-left: -100px;
     }
     .pricing-card:hover ~ .pricing-card,
     .pricing-card:focus-within ~ .pricing-card {
-        transform: none;
-    }
-    .pricing-card:hover, .pricing-card:focus-within {
-        transform: translateY(-8px);
+        transform: translateX(100px);
     }
 }
 
