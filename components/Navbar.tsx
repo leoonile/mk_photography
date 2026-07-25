@@ -82,8 +82,7 @@ export function Navbar() {
     <nav className={`navbar ${isScrolled ? "scrolled" : ""} ${isHidden ? "hidden" : ""}`}>
       <div className="nav-left">
         <Link href="/" className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <img src="/logo.png" alt="MK Photography Logo" style={{ height: '40px', width: 'auto', filter: theme === 'dark' ? 'invert(1)' : 'none' }} />
-          MK PHOTOGRAPHY
+          <img src="/logo.png" alt="MK Photography Logo" style={{ height: '120px', width: 'auto', filter: theme === 'dark' ? 'invert(1)' : 'none' }} />
         </Link>
       </div>
 
