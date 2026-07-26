@@ -525,15 +525,25 @@ h3 {
 }
 
 .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     text-align: left;
+    overflow-x: auto;
+    padding-bottom: 2rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.pricing-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .pricing-card {
+    flex: 1;
+    min-width: 260px;
     background: var(--bg);
     border-radius: 16px;
     padding: 3rem 2rem;
