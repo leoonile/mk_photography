@@ -235,22 +235,7 @@ export function PricingSection({ hideButton = false }: { hideButton?: boolean })
       </div>
 
       <div className="pricing-grid">
-        {activeCategory === "WEDDING PHOTOGRAPHY" ? (
-          <div className="col-span-full text-center py-20 px-6 border border-white/10 rounded-2xl bg-black/20 backdrop-blur-sm max-w-3xl mx-auto flex flex-col items-center justify-center" style={{ gridColumn: "1 / -1" }}>
-            <h3 className="text-3xl md:text-4xl font-serif mb-6">Bespoke Wedding Packages</h3>
-            <p className="text-white/70 mb-10 text-lg leading-relaxed max-w-xl mx-auto">
-              Every love story is unique. We provide fully customized wedding coverage tailored specifically to your needs, vision, and destination to ensure your special day is immortalized perfectly.
-            </p>
-            <a 
-              href="https://wa.me/2349035252179" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-[#c5a880] text-[#0a0a0a] rounded-full font-semibold uppercase tracking-wider text-sm transition-all hover:bg-white"
-            >
-              Request Custom Quote on WhatsApp
-            </a>
-          </div>
-        ) : activePackages.length > 0 ? (
+        {activePackages.length > 0 ? (
           activePackages.map((pkg, index) => (
             <div 
               key={index}
