@@ -234,28 +234,43 @@ export function PricingSection({ hideButton = false }: { hideButton?: boolean })
         ))}
       </div>
 
-      <div className="pricing-grid">
-        {activePackages.length > 0 ? (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
+        {activeCategory === "WEDDING PHOTOGRAPHY" ? (
+          <div className="col-span-full text-center py-20 px-6 border border-white/10 rounded-2xl bg-black/20 backdrop-blur-sm max-w-3xl mx-auto flex flex-col items-center justify-center">
+            <h3 className="text-3xl md:text-4xl font-serif mb-6">Bespoke Wedding Packages</h3>
+            <p className="text-white/70 mb-10 text-lg leading-relaxed max-w-xl mx-auto">
+              Every love story is unique. We provide fully customized wedding coverage tailored specifically to your needs, vision, and destination to ensure your special day is immortalized perfectly.
+            </p>
+            <a 
+              href="https://wa.me/2349035252179" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-[#c5a880] text-[#0a0a0a] rounded-full font-semibold uppercase tracking-wider text-sm transition-all hover:bg-white"
+            >
+              Request Custom Quote on WhatsApp
+            </a>
+          </div>
+        ) : activePackages.length > 0 ? (
           activePackages.map((pkg, index) => (
             <div 
               key={index}
-              className={`pricing-card ${pkg.isPopular ? 'popular' : ''}`}
+              className={`relative flex flex-col p-8 rounded-2xl border bg-black/40 backdrop-blur-sm transition-all duration-300 hover:border-white/30 h-full ${pkg.isPopular ? 'border-[#c5a880]/50 shadow-[0_0_30px_rgba(197,168,128,0.1)]' : 'border-white/10'}`}
             >
               {pkg.isPopular && (
-                <div className="popular-badge">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#c5a880] text-[#0a0a0a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
                   Most Popular
                 </div>
               )}
               
-              <h3 className="card-title text-center">{pkg.title}</h3>
-              {pkg.description && <p className="card-desc text-center">{pkg.description}</p>}
+              <h3 className="text-2xl font-serif text-center mb-2">{pkg.title}</h3>
+              {pkg.description && <p className="text-white/60 text-center text-sm mb-6">{pkg.description}</p>}
               
-              <div className="card-price justify-center">{pkg.price}</div>
+              <div className="text-3xl font-bold text-[#c5a880] text-center my-6 pb-6 border-b border-white/10">{pkg.price}</div>
               
-              <ul className="card-features">
+              <ul className="flex-grow space-y-4 mb-8">
                 {pkg.features.map((feature: string, fIdx: number) => (
-                  <li key={fIdx}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <li key={fIdx} className="flex items-start text-white/70 text-sm">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c5a880" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3 flex-shrink-0 mt-0.5">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     {feature}
@@ -265,7 +280,7 @@ export function PricingSection({ hideButton = false }: { hideButton?: boolean })
               
               <a 
                 href="#contact" 
-                className="card-btn card-btn-primary"
+                className="block text-center w-full px-6 py-4 rounded-full border border-white/20 text-white font-semibold uppercase tracking-wider text-xs transition-all hover:bg-white hover:text-black"
               >
                 Book Now
               </a>
