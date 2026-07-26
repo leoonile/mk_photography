@@ -598,13 +598,15 @@ h3 {
 
 .card-price {
     font-family: var(--serif);
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
     color: var(--accent);
     margin-bottom: 2.5rem;
     font-weight: 400;
     display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: 0.5rem;
+    word-break: break-word;
 }
 
 .card-features {
