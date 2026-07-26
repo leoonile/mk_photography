@@ -20,15 +20,15 @@ export const metadata: Metadata = {
   title: "MK Photography — Home",
   description: "Award-winning Benin photographer specializing in events, portraits, and lifestyle moments that tell authentic stories.",
   icons: {
-    icon: "/icon.png?v=4",
-    apple: "/apple-icon.png?v=4",
+    icon: "/logo.png?v=5",
+    apple: "/logo.png?v=5",
   },
   openGraph: {
     title: "MK Photography",
     description: "Award-winning Benin photographer specializing in events, portraits, and lifestyle moments that tell authentic stories.",
     images: [
       {
-        url: "/opengraph-image.png?v=4",
+        url: "/logo.png?v=5",
         width: 1200,
         height: 630,
         alt: "MK Photography Logo",
